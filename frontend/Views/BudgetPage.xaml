@@ -1,0 +1,181 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="FeteCam.Views.BudgetPage"
+             Title="Budget"
+             BackgroundColor="{StaticResource Background}">
+
+    <Grid RowDefinitions="Auto,*,Auto">
+        <!-- Top App Bar -->
+        <Border Grid.Row="0" Style="{StaticResource HeaderBar}">
+            <VerticalStackLayout Spacing="8">
+                <HorizontalStackLayout Spacing="4">
+                    <HorizontalStackLayout.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="OnBackTapped" />
+                    </HorizontalStackLayout.GestureRecognizers>
+                    <Label Text="‹ Retour" FontSize="14" FontAttributes="Bold" TextColor="{StaticResource Accent}" />
+                </HorizontalStackLayout>
+                <VerticalStackLayout Spacing="2">
+                    <Label Text="Budget" FontSize="18" FontAttributes="Bold" TextColor="White" />
+                    <Label Text="Mariage Alain &amp; Rose · 1 360 000 / 2 000 000 FCFA" FontSize="12" TextColor="#DCE8E2" />
+                </VerticalStackLayout>
+            </VerticalStackLayout>
+        </Border>
+
+        <!-- Main Content -->
+        <ScrollView Grid.Row="1" Padding="14,14">
+            <VerticalStackLayout Spacing="12">
+                <!-- Summary Card -->
+                <Border BackgroundColor="{StaticResource Primary}" StrokeShape="RoundRectangle 10" Stroke="Transparent" Padding="16,14">
+                    <VerticalStackLayout Spacing="8">
+                        <Grid ColumnDefinitions="*,Auto">
+                            <VerticalStackLayout Spacing="2">
+                                <Label Text="BUDGET TOTAL" FontSize="11" TextColor="#DCE8E2" FontAttributes="Bold" />
+                                <Label Text="2 000 000 FCFA" FontSize="20" FontAttributes="Bold" TextColor="White" />
+                            </VerticalStackLayout>
+                            <Border Grid.Column="1" BackgroundColor="{StaticResource PrimaryLight}" StrokeShape="RoundRectangle 6" Stroke="Transparent" Padding="10,4">
+                                <VerticalStackLayout Spacing="1" HorizontalOptions="Center">
+                                    <Label Text="Reste" FontSize="10" TextColor="#DCE8E2" HorizontalOptions="Center" />
+                                    <Label Text="640 000 FCFA" FontSize="12" FontAttributes="Bold" TextColor="{StaticResource Accent}" HorizontalOptions="Center" />
+                                </VerticalStackLayout>
+                            </Border>
+                        </Grid>
+                        <ProgressBar Progress="0.68" ProgressColor="{StaticResource Accent}" HeightRequest="6" />
+                        <Grid ColumnDefinitions="*,Auto">
+                            <Label Text="68 % engagé" FontSize="11" TextColor="#DCE8E2" />
+                            <Label Grid.Column="1" Text="1 360 000 FCFA dépensés" FontSize="11" TextColor="White" />
+                        </Grid>
+                    </VerticalStackLayout>
+                </Border>
+
+                <Label Text="Dépenses par poste" Style="{StaticResource SectionTitle}" Margin="2,4,0,0" />
+
+                <!-- Item 1: Traiteur -->
+                <Border Style="{StaticResource CardFrame}">
+                    <VerticalStackLayout Spacing="6">
+                        <Grid ColumnDefinitions="*,Auto">
+                            <VerticalStackLayout Spacing="2">
+                                <Label Text="Traiteur" Style="{StaticResource SectionTitle}" />
+                                <Label Text="600 000 / 700 000 FCFA" Style="{StaticResource CaptionText}" />
+                            </VerticalStackLayout>
+                            <Border Grid.Column="1" BackgroundColor="{StaticResource SuccessLight}" StrokeShape="RoundRectangle 6" Stroke="Transparent" Padding="8,3" VerticalOptions="Center">
+                                <Label Text="85 %" FontSize="11" FontAttributes="Bold" TextColor="{StaticResource Success}" />
+                            </Border>
+                        </Grid>
+                        <ProgressBar Progress="0.85" ProgressColor="{StaticResource PrimaryLight}" HeightRequest="5" />
+                    </VerticalStackLayout>
+                </Border>
+
+                <!-- Item 2: Salle -->
+                <Border Style="{StaticResource CardFrame}">
+                    <VerticalStackLayout Spacing="6">
+                        <Grid ColumnDefinitions="*,Auto">
+                            <VerticalStackLayout Spacing="2">
+                                <Label Text="Salle" Style="{StaticResource SectionTitle}" />
+                                <Label Text="400 000 / 400 000 FCFA" Style="{StaticResource CaptionText}" />
+                            </VerticalStackLayout>
+                            <Border Grid.Column="1" BackgroundColor="{StaticResource SuccessLight}" StrokeShape="RoundRectangle 6" Stroke="Transparent" Padding="8,3" VerticalOptions="Center">
+                                <Label Text="100 %" FontSize="11" FontAttributes="Bold" TextColor="{StaticResource Success}" />
+                            </Border>
+                        </Grid>
+                        <ProgressBar Progress="1.0" ProgressColor="{StaticResource Success}" HeightRequest="5" />
+                    </VerticalStackLayout>
+                </Border>
+
+                <!-- Item 3: Boissons (Alert) -->
+                <Border BackgroundColor="{StaticResource ErrorLight}" StrokeShape="RoundRectangle 10" Stroke="{StaticResource Error}" StrokeThickness="0.5" Padding="14,14">
+                    <VerticalStackLayout Spacing="6">
+                        <Grid ColumnDefinitions="*,Auto">
+                            <VerticalStackLayout Spacing="2">
+                                <Label Text="Boissons" Style="{StaticResource SectionTitle}" TextColor="{StaticResource Error}" />
+                                <Label Text="210 000 / 200 000 FCFA" Style="{StaticResource CaptionText}" TextColor="{StaticResource Error}" />
+                            </VerticalStackLayout>
+                            <Border Grid.Column="1" BackgroundColor="{StaticResource Surface}" StrokeShape="RoundRectangle 6" Stroke="Transparent" Padding="8,3" VerticalOptions="Center">
+                                <Label Text="Dépassé" FontSize="11" FontAttributes="Bold" TextColor="{StaticResource Error}" />
+                            </Border>
+                        </Grid>
+                        <ProgressBar Progress="1.0" ProgressColor="{StaticResource Error}" HeightRequest="5" />
+                    </VerticalStackLayout>
+                </Border>
+
+                <!-- Item 4: Décoration -->
+                <Border Style="{StaticResource CardFrame}">
+                    <VerticalStackLayout Spacing="6">
+                        <Grid ColumnDefinitions="*,Auto">
+                            <VerticalStackLayout Spacing="2">
+                                <Label Text="Décoration" Style="{StaticResource SectionTitle}" />
+                                <Label Text="90 000 / 250 000 FCFA" Style="{StaticResource CaptionText}" />
+                            </VerticalStackLayout>
+                            <Border Grid.Column="1" BackgroundColor="{StaticResource WarningLight}" StrokeShape="RoundRectangle 6" Stroke="Transparent" Padding="8,3" VerticalOptions="Center">
+                                <Label Text="36 %" FontSize="11" FontAttributes="Bold" TextColor="{StaticResource Warning}" />
+                            </Border>
+                        </Grid>
+                        <ProgressBar Progress="0.36" ProgressColor="{StaticResource Accent}" HeightRequest="5" />
+                    </VerticalStackLayout>
+                </Border>
+
+                <!-- Item 5: Musique -->
+                <Border Style="{StaticResource CardFrame}">
+                    <VerticalStackLayout Spacing="6">
+                        <Grid ColumnDefinitions="*,Auto">
+                            <VerticalStackLayout Spacing="2">
+                                <Label Text="Musique" Style="{StaticResource SectionTitle}" />
+                                <Label Text="60 000 / 150 000 FCFA" Style="{StaticResource CaptionText}" />
+                            </VerticalStackLayout>
+                            <Border Grid.Column="1" BackgroundColor="{StaticResource WarningLight}" StrokeShape="RoundRectangle 6" Stroke="Transparent" Padding="8,3" VerticalOptions="Center">
+                                <Label Text="40 %" FontSize="11" FontAttributes="Bold" TextColor="{StaticResource Warning}" />
+                            </Border>
+                        </Grid>
+                        <ProgressBar Progress="0.40" ProgressColor="{StaticResource Accent}" HeightRequest="5" />
+                    </VerticalStackLayout>
+                </Border>
+
+                <!-- Add Button -->
+                <Button Text="+ Ajouter une dépense" Style="{StaticResource PrimaryButton}" Clicked="OnAddExpenseClicked" Margin="0,4,0,8" />
+            </VerticalStackLayout>
+        </ScrollView>
+
+        <!-- Bottom Tab Navigation -->
+        <Border Grid.Row="2" Style="{StaticResource BottomNavBar}">
+            <Grid ColumnDefinitions="*,*,*,*,*">
+                <VerticalStackLayout Grid.Column="0" HorizontalOptions="Center" Spacing="4">
+                    <VerticalStackLayout.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="OnNavAccueilTapped" />
+                    </VerticalStackLayout.GestureRecognizers>
+                    <Label Text="Accueil" FontSize="12" TextColor="{StaticResource TextSecondary}" HorizontalOptions="Center" />
+                    <BoxView HeightRequest="3" WidthRequest="20" BackgroundColor="Transparent" HorizontalOptions="Center" />
+                </VerticalStackLayout>
+
+                <VerticalStackLayout Grid.Column="1" HorizontalOptions="Center" Spacing="4">
+                    <VerticalStackLayout.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="OnNavInvitesTapped" />
+                    </VerticalStackLayout.GestureRecognizers>
+                    <Label Text="Invités" FontSize="12" TextColor="{StaticResource TextSecondary}" HorizontalOptions="Center" />
+                    <BoxView HeightRequest="3" WidthRequest="20" BackgroundColor="Transparent" HorizontalOptions="Center" />
+                </VerticalStackLayout>
+
+                <!-- Budget (Actif) -->
+                <VerticalStackLayout Grid.Column="2" HorizontalOptions="Center" Spacing="4">
+                    <Label Text="Budget" FontSize="12" FontAttributes="Bold" TextColor="{StaticResource Primary}" HorizontalOptions="Center" />
+                    <BoxView HeightRequest="3" WidthRequest="20" BackgroundColor="{StaticResource Primary}" CornerRadius="2" HorizontalOptions="Center" />
+                </VerticalStackLayout>
+
+                <VerticalStackLayout Grid.Column="3" HorizontalOptions="Center" Spacing="4">
+                    <VerticalStackLayout.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="OnNavTachesTapped" />
+                    </VerticalStackLayout.GestureRecognizers>
+                    <Label Text="Tâches" FontSize="12" TextColor="{StaticResource TextSecondary}" HorizontalOptions="Center" />
+                    <BoxView HeightRequest="3" WidthRequest="20" BackgroundColor="Transparent" HorizontalOptions="Center" />
+                </VerticalStackLayout>
+
+                <VerticalStackLayout Grid.Column="4" HorizontalOptions="Center" Spacing="4">
+                    <VerticalStackLayout.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="OnNavProfilTapped" />
+                    </VerticalStackLayout.GestureRecognizers>
+                    <Label Text="Profil" FontSize="12" TextColor="{StaticResource TextSecondary}" HorizontalOptions="Center" />
+                    <BoxView HeightRequest="3" WidthRequest="20" BackgroundColor="Transparent" HorizontalOptions="Center" />
+                </VerticalStackLayout>
+            </Grid>
+        </Border>
+    </Grid>
+</ContentPage>

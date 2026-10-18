@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="FeteCam.Views.ContributionsPage"
+             Title="Contributions"
+             BackgroundColor="{StaticResource Background}">
+
+    <Grid RowDefinitions="Auto,*,Auto">
+        <!-- Top App Bar -->
+        <Border Grid.Row="0" Style="{StaticResource HeaderBar}">
+            <VerticalStackLayout Spacing="8">
+                <HorizontalStackLayout Spacing="4">
+                    <HorizontalStackLayout.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="OnBackTapped" />
+                    </HorizontalStackLayout.GestureRecognizers>
+                    <Label Text="‹ Retour" FontSize="14" FontAttributes="Bold" TextColor="{StaticResource Accent}" />
+                </HorizontalStackLayout>
+                <VerticalStackLayout Spacing="2">
+                    <Label Text="Contributions" FontSize="18" FontAttributes="Bold" TextColor="White" />
+                    <Label Text="Mariage Alain &amp; Rose · Objectif: 2 000 000 FCFA" FontSize="12" TextColor="#DCE8E2" />
+                </VerticalStackLayout>
+            </VerticalStackLayout>
+        </Border>
+
+        <!-- Main Content -->
+        <ScrollView Grid.Row="1" Padding="14,14">
+            <VerticalStackLayout Spacing="12">
+                <!-- Hero Objective Card -->
+                <Border BackgroundColor="{StaticResource Primary}" StrokeShape="RoundRectangle 10" Stroke="Transparent" Padding="16,14">
+                    <VerticalStackLayout Spacing="8">
+                        <Label Text="TOTAL COLLECTÉ" FontSize="11" TextColor="#DCE8E2" FontAttributes="Bold" />
+                        <Label Text="1 240 000 FCFA" FontSize="22" FontAttributes="Bold" TextColor="White" />
+                        <ProgressBar Progress="0.62" ProgressColor="{StaticResource Accent}" HeightRequest="6" />
+                        <Grid ColumnDefinitions="*,Auto">
+                            <Label Text="62 % de l'objectif" FontSize="11" TextColor="{StaticResource Accent}" FontAttributes="Bold" />
+                            <Label Grid.Column="1" Text="Reste: 760 000 FCFA" FontSize="11" TextColor="#DCE8E2" />
+                        </Grid>
+                    </VerticalStackLayout>
+                </Border>
+
+                <!-- Transactions Header -->
+                <Label Text="Derniers versements" Style="{StaticResource SectionTitle}" Margin="2,4,0,0" />
+
+                <!-- Transaction 1: Marie Ngono -->
+                <Border Style="{StaticResource CardFrame}">
+                    <Grid ColumnDefinitions="Auto,*,Auto">
+                        <Border WidthRequest="40" HeightRequest="40" StrokeShape="RoundRectangle 20" BackgroundColor="{StaticResource PrimaryLight}" Stroke="Transparent" VerticalOptions="Center">
+                            <Label Text="MN" FontSize="13" FontAttributes="Bold" TextColor="White" HorizontalOptions="Center" VerticalOptions="Center" />
+                        </Border>
+                        <VerticalStackLayout Grid.Column="1" Spacing="2" Margin="12,0,0,0" VerticalOptions="Center">
+                            <Label Text="Marie Ngono" Style="{StaticResource SectionTitle}" />
+                            <Label Text="Orange Money · 12 nov." Style="{StaticResource CaptionText}" />
+                        </VerticalStackLayout>
+                        <Label Grid.Column="2" Text="50 000 FCFA" FontSize="14" FontAttributes="Bold" TextColor="{StaticResource Primary}" VerticalOptions="Center" />
+                    </Grid>
+                </Border>
+
+                <!-- Transaction 2: Paul Tchoumi -->
+                <Border Style="{StaticResource CardFrame}">
+                    <Grid ColumnDefinitions="Auto,*,Auto">
+                        <Border WidthRequest="40" HeightRequest="40" StrokeShape="RoundRectangle 20" BackgroundColor="{StaticResource Accent}" Stroke="Transparent" VerticalOptions="Center">
+                            <Label Text="PT" FontSize="13" FontAttributes="Bold" TextColor="White" HorizontalOptions="Center" VerticalOptions="Center" />
+                        </Border>
+                        <VerticalStackLayout Grid.Column="1" Spacing="2" Margin="12,0,0,0" VerticalOptions="Center">
+                            <Label Text="Paul Tchoumi" Style="{StaticResource SectionTitle}" />
+                            <Label Text="MTN MoMo · 10 nov." Style="{StaticResource CaptionText}" />
+                        </VerticalStackLayout>
+                        <Label Grid.Column="2" Text="25 000 FCFA" FontSize="14" FontAttributes="Bold" TextColor="{StaticResource Primary}" VerticalOptions="Center" />
+                    </Grid>
+                </Border>
+
+                <!-- Transaction 3: Famille Kamga -->
+                <Border Style="{StaticResource CardFrame}">
+                    <Grid ColumnDefinitions="Auto,*,Auto">
+                        <Border WidthRequest="40" HeightRequest="40" StrokeShape="RoundRectangle 20" BackgroundColor="{StaticResource Primary}" Stroke="Transparent" VerticalOptions="Center">
+                            <Label Text="FK" FontSize="13" FontAttributes="Bold" TextColor="White" HorizontalOptions="Center" VerticalOptions="Center" />
+                        </Border>
+                        <VerticalStackLayout Grid.Column="1" Spacing="2" Margin="12,0,0,0" VerticalOptions="Center">
+                            <Label Text="Famille Kamga" Style="{StaticResource SectionTitle}" />
+                            <Label Text="Espèces · 08 nov." Style="{StaticResource CaptionText}" />
+                        </VerticalStackLayout>
+                        <Label Grid.Column="2" Text="150 000 FCFA" FontSize="14" FontAttributes="Bold" TextColor="{StaticResource Primary}" VerticalOptions="Center" />
+                    </Grid>
+                </Border>
+
+                <!-- Transaction 4: Jean Fotso -->
+                <Border Style="{StaticResource CardFrame}">
+                    <Grid ColumnDefinitions="Auto,*,Auto">
+                        <Border WidthRequest="40" HeightRequest="40" StrokeShape="RoundRectangle 20" BackgroundColor="{StaticResource AccentDark}" Stroke="Transparent" VerticalOptions="Center">
+                            <Label Text="JF" FontSize="13" FontAttributes="Bold" TextColor="White" HorizontalOptions="Center" VerticalOptions="Center" />
+                        </Border>
+                        <VerticalStackLayout Grid.Column="1" Spacing="2" Margin="12,0,0,0" VerticalOptions="Center">
+                            <Label Text="Jean Fotso" Style="{StaticResource SectionTitle}" />
+                            <Label Text="Orange Money · 05 nov." Style="{StaticResource CaptionText}" />
+                        </VerticalStackLayout>
+                        <Label Grid.Column="2" Text="30 000 FCFA" FontSize="14" FontAttributes="Bold" TextColor="{StaticResource Primary}" VerticalOptions="Center" />
+                    </Grid>
+                </Border>
+
+                <!-- Add Button -->
+                <Button Text="+ Enregistrer une contribution" Style="{StaticResource PrimaryButton}" Clicked="OnAddContributionClicked" Margin="0,4,0,8" />
+            </VerticalStackLayout>
+        </ScrollView>
+
+        <!-- Bottom Tab Navigation -->
+        <Border Grid.Row="2" Style="{StaticResource BottomNavBar}">
+            <Grid ColumnDefinitions="*,*,*,*,*">
+                <VerticalStackLayout Grid.Column="0" HorizontalOptions="Center" Spacing="4">
+                    <VerticalStackLayout.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="OnNavAccueilTapped" />
+                    </VerticalStackLayout.GestureRecognizers>
+                    <Label Text="Accueil" FontSize="12" TextColor="{StaticResource TextSecondary}" HorizontalOptions="Center" />
+                    <BoxView HeightRequest="3" WidthRequest="20" BackgroundColor="Transparent" HorizontalOptions="Center" />
+                </VerticalStackLayout>
+
+                <VerticalStackLayout Grid.Column="1" HorizontalOptions="Center" Spacing="4">
+                    <VerticalStackLayout.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="OnNavInvitesTapped" />
+                    </VerticalStackLayout.GestureRecognizers>
+                    <Label Text="Invités" FontSize="12" TextColor="{StaticResource TextSecondary}" HorizontalOptions="Center" />
+                    <BoxView HeightRequest="3" WidthRequest="20" BackgroundColor="Transparent" HorizontalOptions="Center" />
+                </VerticalStackLayout>
+
+                <!-- Budget Tab -->
+                <VerticalStackLayout Grid.Column="2" HorizontalOptions="Center" Spacing="4">
+                    <VerticalStackLayout.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="OnNavBudgetTapped" />
+                    </VerticalStackLayout.GestureRecognizers>
+                    <Label Text="Budget" FontSize="12" FontAttributes="Bold" TextColor="{StaticResource Primary}" HorizontalOptions="Center" />
+                    <BoxView HeightRequest="3" WidthRequest="20" BackgroundColor="{StaticResource Primary}" CornerRadius="2" HorizontalOptions="Center" />
+                </VerticalStackLayout>
+
+                <VerticalStackLayout Grid.Column="3" HorizontalOptions="Center" Spacing="4">
+                    <VerticalStackLayout.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="OnNavTachesTapped" />
+                    </VerticalStackLayout.GestureRecognizers>
+                    <Label Text="Tâches" FontSize="12" TextColor="{StaticResource TextSecondary}" HorizontalOptions="Center" />
+                    <BoxView HeightRequest="3" WidthRequest="20" BackgroundColor="Transparent" HorizontalOptions="Center" />
+                </VerticalStackLayout>
+
+                <VerticalStackLayout Grid.Column="4" HorizontalOptions="Center" Spacing="4">
+                    <VerticalStackLayout.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="OnNavProfilTapped" />
+                    </VerticalStackLayout.GestureRecognizers>
+                    <Label Text="Profil" FontSize="12" TextColor="{StaticResource TextSecondary}" HorizontalOptions="Center" />
+                    <BoxView HeightRequest="3" WidthRequest="20" BackgroundColor="Transparent" HorizontalOptions="Center" />
+                </VerticalStackLayout>
+            </Grid>
+        </Border>
+    </Grid>
+</ContentPage>

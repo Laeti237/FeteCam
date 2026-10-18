@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="FeteCam.Views.ResponsablesPage"
+             Title="Responsables"
+             BackgroundColor="{StaticResource Background}">
+
+    <Grid RowDefinitions="Auto,*,Auto">
+        <!-- Top App Bar -->
+        <Border Grid.Row="0" Style="{StaticResource HeaderBar}">
+            <VerticalStackLayout Spacing="8">
+                <HorizontalStackLayout Spacing="4">
+                    <HorizontalStackLayout.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="OnBackTapped" />
+                    </HorizontalStackLayout.GestureRecognizers>
+                    <Label Text="‹ Retour" FontSize="14" FontAttributes="Bold" TextColor="{StaticResource Accent}" />
+                </HorizontalStackLayout>
+                <Grid ColumnDefinitions="*,Auto">
+                    <VerticalStackLayout Spacing="2">
+                        <Label Text="Comité d'organisation" FontSize="18" FontAttributes="Bold" TextColor="White" />
+                        <Label x:Name="SubtitleLabel" Text="Mariage Alain &amp; Rose · Responsables" FontSize="12" TextColor="#DCE8E2" />
+                    </VerticalStackLayout>
+                    <Button Grid.Column="1" Text="+ Ajouter" FontSize="12" FontAttributes="Bold" BackgroundColor="{StaticResource Accent}" TextColor="{StaticResource TextPrimary}" HeightRequest="36" Padding="12,0" CornerRadius="8" Clicked="OnAddResponsibleClicked" VerticalOptions="Center" />
+                </Grid>
+            </VerticalStackLayout>
+        </Border>
+
+        <!-- Main Content: List of Responsibles -->
+        <ScrollView Grid.Row="1" Padding="14,14">
+            <VerticalStackLayout Spacing="12">
+                <Label Text="Membres assignés" Style="{StaticResource SectionTitle}" Margin="2,4,0,0" />
+
+                <!-- Container populated dynamically -->
+                <VerticalStackLayout x:Name="ResponsiblesContainer" Spacing="10" />
+            </VerticalStackLayout>
+        </ScrollView>
+
+        <!-- Bottom Action Button -->
+        <Border Grid.Row="2" BackgroundColor="{StaticResource Surface}" Stroke="{StaticResource Border}" StrokeThickness="1,0,0,0" Padding="14,10,14,16">
+            <Button Text="+ Ajouter un responsable" Style="{StaticResource PrimaryButton}" Clicked="OnAddResponsibleClicked" />
+        </Border>
+    </Grid>
+</ContentPage>

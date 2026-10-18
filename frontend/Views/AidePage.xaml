@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="FeteCam.Views.AidePage"
+             Title="Aide"
+             BackgroundColor="{StaticResource Background}">
+
+    <Grid RowDefinitions="Auto,*,Auto">
+        <!-- Top App Bar -->
+        <Border Grid.Row="0" Style="{StaticResource HeaderBar}">
+            <VerticalStackLayout Spacing="8">
+                <HorizontalStackLayout Spacing="4">
+                    <HorizontalStackLayout.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="OnBackTapped" />
+                    </HorizontalStackLayout.GestureRecognizers>
+                    <Label Text="‹ Retour" FontSize="14" FontAttributes="Bold" TextColor="{StaticResource Accent}" />
+                </HorizontalStackLayout>
+                <VerticalStackLayout Spacing="2">
+                    <Label Text="Aide &amp; Support" FontSize="18" FontAttributes="Bold" TextColor="White" />
+                    <Label Text="Questions fréquentes et assistance" FontSize="12" TextColor="#DCE8E2" />
+                </VerticalStackLayout>
+            </VerticalStackLayout>
+        </Border>
+
+        <!-- Main Content -->
+        <ScrollView Grid.Row="1" Padding="14,14">
+            <VerticalStackLayout Spacing="12">
+                <Label Text="Foire aux questions" Style="{StaticResource SectionTitle}" Margin="2,4,0,0" />
+
+                <!-- FAQ 1 -->
+                <Border Style="{StaticResource CardFrame}">
+                    <VerticalStackLayout Spacing="4">
+                        <Label Text="Comment ajouter des invités ?" Style="{StaticResource SectionTitle}" />
+                        <Label Text="Rendez-vous dans l'onglet Invités puis cliquez sur '+ Ajouter un invité'. Vous pourrez préciser le nom, le numéro de téléphone et le nombre de personnes qui l'accompagnent." Style="{StaticResource CaptionText}" TextColor="{StaticResource TextSecondary}" />
+                    </VerticalStackLayout>
+                </Border>
+
+                <!-- FAQ 2 -->
+                <Border Style="{StaticResource CardFrame}">
+                    <VerticalStackLayout Spacing="4">
+                        <Label Text="Comment gérer le comité d'organisation ?" Style="{StaticResource SectionTitle}" />
+                        <Label Text="Dans l'onglet Tâches, cliquez sur 'Gérer le comité'. Vous pourrez y ajouter ou retirer des responsables à tout moment." Style="{StaticResource CaptionText}" TextColor="{StaticResource TextSecondary}" />
+                    </VerticalStackLayout>
+                </Border>
+
+                <!-- FAQ 3 -->
+                <Border Style="{StaticResource CardFrame}">
+                    <VerticalStackLayout Spacing="4">
+                        <Label Text="Comment suivre les dons Orange Money / MTN MoMo ?" Style="{StaticResource SectionTitle}" />
+                        <Label Text="Depuis la fiche de l'événement, ouvrez 'Contributions' pour saisir chaque donateur et son mode de versement avec la référence de transaction." Style="{StaticResource CaptionText}" TextColor="{StaticResource TextSecondary}" />
+                    </VerticalStackLayout>
+                </Border>
+
+                <!-- FAQ 4 -->
+                <Border Style="{StaticResource CardFrame}">
+                    <VerticalStackLayout Spacing="4">
+                        <Label Text="Comment générer le bilan de clôture ?" Style="{StaticResource SectionTitle}" />
+                        <Label Text="Ouvrez l'événement puis cliquez sur 'Voir le bilan complet'. Vous pourrez consulter le solde net et exporter le rapport final en PDF." Style="{StaticResource CaptionText}" TextColor="{StaticResource TextSecondary}" />
+                    </VerticalStackLayout>
+                </Border>
+            </VerticalStackLayout>
+        </ScrollView>
+
+        <!-- Bottom Action Button -->
+        <Border Grid.Row="2" BackgroundColor="{StaticResource Surface}" Stroke="{StaticResource Border}" StrokeThickness="1,0,0,0" Padding="14,10,14,16">
+            <Button Text="Contacter l'assistance" Style="{StaticResource PrimaryButton}" Clicked="OnContactSupportClicked" />
+        </Border>
+    </Grid>
+</ContentPage>

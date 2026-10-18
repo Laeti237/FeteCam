@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Shell xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+       xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+       xmlns:local="clr-namespace:FeteCam.Views"
+       x:Class="FeteCam.AppShell"
+       Shell.FlyoutBehavior="Disabled"
+       Shell.NavBarIsVisible="False">
+
+    <ShellContent Title="Accueil"
+                  ContentTemplate="{DataTemplate local:AccueilPage}"
+                  Route="AccueilPage" />
+
+    <ShellContent Title="Invités"
+                  ContentTemplate="{DataTemplate local:InvitesPage}"
+                  Route="InvitesPage" />
+
+    <ShellContent Title="Budget"
+                  ContentTemplate="{DataTemplate local:BudgetPage}"
+                  Route="BudgetPage" />
+
+    <ShellContent Title="Tâches"
+                  ContentTemplate="{DataTemplate local:TachesPage}"
+                  Route="TachesPage" />
+
+    <ShellContent Title="Profil"
+                  ContentTemplate="{DataTemplate local:ProfilPage}"
+                  Route="ProfilPage" />
+
+    <ShellContent Title="Responsables"
+                  ContentTemplate="{DataTemplate local:ResponsablesPage}"
+                  Route="ResponsablesPage" />
+
+    <ShellContent Title="Contributions"
+                  ContentTemplate="{DataTemplate local:ContributionsPage}"
+                  Route="ContributionsPage" />
+
+    <ShellContent Title="Bilan"
+                  ContentTemplate="{DataTemplate local:BilanPage}"
+                  Route="BilanPage" />
+
+    <ShellContent Title="Nouvelle tâche"
+                  ContentTemplate="{DataTemplate local:NouvelleTachePage}"
+                  Route="NouvelleTachePage" />
+
+    <ShellContent Title="Ajouter invité"
+                  ContentTemplate="{DataTemplate local:AjouterInvitePage}"
+                  Route="AjouterInvitePage" />
+
+    <ShellContent Title="Ajouter dépense"
+                  ContentTemplate="{DataTemplate local:AjouterDepensePage}"
+                  Route="AjouterDepensePage" />
+
+    <ShellContent Title="Fiche événement"
+                  ContentTemplate="{DataTemplate local:FicheEvenementPage}"
+                  Route="FicheEvenementPage" />
+
+    <ShellContent Title="Enregistrer contribution"
+                  ContentTemplate="{DataTemplate local:EnregistrerContributionPage}"
+                  Route="EnregistrerContributionPage" />
+
+    <ShellContent Title="Création"
+                  ContentTemplate="{DataTemplate local:CreationPage}"
+                  Route="CreationPage" />
+
+</Shell>

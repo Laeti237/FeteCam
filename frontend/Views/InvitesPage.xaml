@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="FeteCam.Views.InvitesPage"
+             Title="Invités"
+             BackgroundColor="{StaticResource Background}">
+
+    <Grid RowDefinitions="Auto,*,Auto">
+        <!-- Top App Bar -->
+        <Border Grid.Row="0" Style="{StaticResource HeaderBar}">
+            <VerticalStackLayout Spacing="8">
+                <HorizontalStackLayout Spacing="4">
+                    <HorizontalStackLayout.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="OnBackTapped" />
+                    </HorizontalStackLayout.GestureRecognizers>
+                    <Label Text="‹ Retour" FontSize="14" FontAttributes="Bold" TextColor="{StaticResource Accent}" />
+                </HorizontalStackLayout>
+                <VerticalStackLayout Spacing="2">
+                    <Label Text="Invités" FontSize="18" FontAttributes="Bold" TextColor="White" />
+                    <Label Text="Mariage Alain &amp; Rose · 120 au total" FontSize="12" TextColor="#DCE8E2" />
+                </VerticalStackLayout>
+            </VerticalStackLayout>
+        </Border>
+
+        <!-- Main Content -->
+        <ScrollView Grid.Row="1" Padding="14,14">
+            <VerticalStackLayout Spacing="12">
+                <!-- 3 Stats Counter Cards -->
+                <Grid ColumnDefinitions="*,*,*" ColumnSpacing="8">
+                    <Border BackgroundColor="{StaticResource Surface}" StrokeShape="RoundRectangle 8" Stroke="{StaticResource Border}" Padding="8,10">
+                        <VerticalStackLayout Spacing="2" HorizontalOptions="Center">
+                            <Label Text="86" FontSize="20" FontAttributes="Bold" TextColor="{StaticResource Success}" HorizontalOptions="Center" />
+                            <Label Text="Confirmés" FontSize="11" TextColor="{StaticResource TextSecondary}" HorizontalOptions="Center" />
+                        </VerticalStackLayout>
+                    </Border>
+                    <Border Grid.Column="1" BackgroundColor="{StaticResource Surface}" StrokeShape="RoundRectangle 8" Stroke="{StaticResource Border}" Padding="8,10">
+                        <VerticalStackLayout Spacing="2" HorizontalOptions="Center">
+                            <Label Text="24" FontSize="20" FontAttributes="Bold" TextColor="{StaticResource Warning}" HorizontalOptions="Center" />
+                            <Label Text="En attente" FontSize="11" TextColor="{StaticResource TextSecondary}" HorizontalOptions="Center" />
+                        </VerticalStackLayout>
+                    </Border>
+                    <Border Grid.Column="2" BackgroundColor="{StaticResource Surface}" StrokeShape="RoundRectangle 8" Stroke="{StaticResource Border}" Padding="8,10">
+                        <VerticalStackLayout Spacing="2" HorizontalOptions="Center">
+                            <Label Text="10" FontSize="20" FontAttributes="Bold" TextColor="{StaticResource Error}" HorizontalOptions="Center" />
+                            <Label Text="Absents" FontSize="11" TextColor="{StaticResource TextSecondary}" HorizontalOptions="Center" />
+                        </VerticalStackLayout>
+                    </Border>
+                </Grid>
+
+                <!-- Search Input -->
+                <Border StrokeShape="RoundRectangle 8" Stroke="{StaticResource Border}" BackgroundColor="{StaticResource Surface}" Padding="12,0" HeightRequest="44">
+                    <Entry Placeholder="Rechercher un invité..." TextColor="{StaticResource TextPrimary}" PlaceholderColor="{StaticResource TextTertiary}" FontSize="14" VerticalOptions="Center" />
+                </Border>
+
+                <!-- Guest List -->
+                <VerticalStackLayout x:Name="GuestsContainer" Spacing="12" />
+
+                <!-- Add Button -->
+                <Button Text="+ Ajouter un invité" Style="{StaticResource PrimaryButton}" Clicked="OnAddGuestClicked" Margin="0,4,0,8" />
+            </VerticalStackLayout>
+        </ScrollView>
+
+        <!-- Bottom Tab Navigation -->
+        <Border Grid.Row="2" Style="{StaticResource BottomNavBar}">
+            <Grid ColumnDefinitions="*,*,*,*,*">
+                <VerticalStackLayout Grid.Column="0" HorizontalOptions="Center" Spacing="4">
+                    <VerticalStackLayout.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="OnNavAccueilTapped" />
+                    </VerticalStackLayout.GestureRecognizers>
+                    <Label Text="Accueil" FontSize="12" TextColor="{StaticResource TextSecondary}" HorizontalOptions="Center" />
+                    <BoxView HeightRequest="3" WidthRequest="20" BackgroundColor="Transparent" HorizontalOptions="Center" />
+                </VerticalStackLayout>
+
+                <!-- Invites (Actif) -->
+                <VerticalStackLayout Grid.Column="1" HorizontalOptions="Center" Spacing="4">
+                    <Label Text="Invités" FontSize="12" FontAttributes="Bold" TextColor="{StaticResource Primary}" HorizontalOptions="Center" />
+                    <BoxView HeightRequest="3" WidthRequest="20" BackgroundColor="{StaticResource Primary}" CornerRadius="2" HorizontalOptions="Center" />
+                </VerticalStackLayout>
+
+                <VerticalStackLayout Grid.Column="2" HorizontalOptions="Center" Spacing="4">
+                    <VerticalStackLayout.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="OnNavBudgetTapped" />
+                    </VerticalStackLayout.GestureRecognizers>
+                    <Label Text="Budget" FontSize="12" TextColor="{StaticResource TextSecondary}" HorizontalOptions="Center" />
+                    <BoxView HeightRequest="3" WidthRequest="20" BackgroundColor="Transparent" HorizontalOptions="Center" />
+                </VerticalStackLayout>
+
+                <VerticalStackLayout Grid.Column="3" HorizontalOptions="Center" Spacing="4">
+                    <VerticalStackLayout.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="OnNavTachesTapped" />
+                    </VerticalStackLayout.GestureRecognizers>
+                    <Label Text="Tâches" FontSize="12" TextColor="{StaticResource TextSecondary}" HorizontalOptions="Center" />
+                    <BoxView HeightRequest="3" WidthRequest="20" BackgroundColor="Transparent" HorizontalOptions="Center" />
+                </VerticalStackLayout>
+
+                <VerticalStackLayout Grid.Column="4" HorizontalOptions="Center" Spacing="4">
+                    <VerticalStackLayout.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="OnNavProfilTapped" />
+                    </VerticalStackLayout.GestureRecognizers>
+                    <Label Text="Profil" FontSize="12" TextColor="{StaticResource TextSecondary}" HorizontalOptions="Center" />
+                    <BoxView HeightRequest="3" WidthRequest="20" BackgroundColor="Transparent" HorizontalOptions="Center" />
+                </VerticalStackLayout>
+            </Grid>
+        </Border>
+    </Grid>
+</ContentPage>

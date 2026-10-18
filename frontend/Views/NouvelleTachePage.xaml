@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="FeteCam.Views.NouvelleTachePage"
+             Title="Nouvelle tâche"
+             BackgroundColor="{StaticResource Background}">
+
+    <Grid RowDefinitions="Auto,*,Auto">
+        <!-- Top App Bar -->
+        <Border Grid.Row="0" Style="{StaticResource HeaderBar}">
+            <VerticalStackLayout Spacing="8">
+                <HorizontalStackLayout Spacing="4">
+                    <HorizontalStackLayout.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="OnBackTapped" />
+                    </HorizontalStackLayout.GestureRecognizers>
+                    <Label Text="‹ Retour" FontSize="14" FontAttributes="Bold" TextColor="{StaticResource Accent}" />
+                </HorizontalStackLayout>
+                <VerticalStackLayout Spacing="2">
+                    <Label Text="Nouvelle tâche" FontSize="18" FontAttributes="Bold" TextColor="White" />
+                    <Label Text="Mariage Alain &amp; Rose" FontSize="12" TextColor="#DCE8E2" />
+                </VerticalStackLayout>
+            </VerticalStackLayout>
+        </Border>
+
+        <!-- Form ScrollView -->
+        <ScrollView Grid.Row="1" Padding="14,14">
+            <VerticalStackLayout Spacing="14">
+                <!-- Responsibles Choice -->
+                <VerticalStackLayout Spacing="6">
+                    <Label Text="Responsable" Style="{StaticResource SectionTitle}" />
+                    <FlexLayout x:Name="ResponsiblesSelectionLayout" Wrap="Wrap" JustifyContent="Start" />
+                </VerticalStackLayout>
+
+                <!-- Inputs Card -->
+                <Border Style="{StaticResource CardFrame}">
+                    <VerticalStackLayout Spacing="12">
+                        <VerticalStackLayout Spacing="4">
+                            <Label Text="Titre de la tâche" Style="{StaticResource CaptionText}" FontAttributes="Bold" TextColor="{StaticResource TextPrimary}" />
+                            <Border StrokeShape="RoundRectangle 8" Stroke="{StaticResource Border}" Padding="10,0" BackgroundColor="{StaticResource Surface}">
+                                <Entry Placeholder="Ex. Réserver la salle" Style="{StaticResource StyledEntry}" />
+                            </Border>
+                        </VerticalStackLayout>
+
+                        <VerticalStackLayout Spacing="4">
+                            <Label Text="Date limite" Style="{StaticResource CaptionText}" FontAttributes="Bold" TextColor="{StaticResource TextPrimary}" />
+                            <Border StrokeShape="RoundRectangle 8" Stroke="{StaticResource Border}" Padding="10,0" BackgroundColor="{StaticResource Surface}">
+                                <Entry Placeholder="JJ/MM/AAAA" Style="{StaticResource StyledEntry}" />
+                            </Border>
+                        </VerticalStackLayout>
+
+                        <VerticalStackLayout Spacing="4">
+                            <Label Text="Détails (optionnel)" Style="{StaticResource CaptionText}" FontAttributes="Bold" TextColor="{StaticResource TextPrimary}" />
+                            <Border StrokeShape="RoundRectangle 8" Stroke="{StaticResource Border}" Padding="10,0" BackgroundColor="{StaticResource Surface}">
+                                <Entry Placeholder="Instructions complémentaires" Style="{StaticResource StyledEntry}" />
+                            </Border>
+                        </VerticalStackLayout>
+                    </VerticalStackLayout>
+                </Border>
+            </VerticalStackLayout>
+        </ScrollView>
+
+        <!-- Bottom Action Button -->
+        <Border Grid.Row="2" BackgroundColor="{StaticResource Surface}" Stroke="{StaticResource Border}" StrokeThickness="1,0,0,0" Padding="14,10,14,16">
+            <Button Text="Créer la tâche" Style="{StaticResource PrimaryButton}" Clicked="OnSaveClicked" />
+        </Border>
+    </Grid>
+</ContentPage>

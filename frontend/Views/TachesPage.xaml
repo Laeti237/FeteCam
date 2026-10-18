@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="FeteCam.Views.TachesPage"
+             Title="Tâches"
+             BackgroundColor="{StaticResource Background}">
+
+    <Grid RowDefinitions="Auto,*,Auto">
+        <!-- Top App Bar -->
+        <Border Grid.Row="0" Style="{StaticResource HeaderBar}">
+            <VerticalStackLayout Spacing="8">
+                <HorizontalStackLayout Spacing="4">
+                    <HorizontalStackLayout.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="OnBackTapped" />
+                    </HorizontalStackLayout.GestureRecognizers>
+                    <Label Text="‹ Retour" FontSize="14" FontAttributes="Bold" TextColor="{StaticResource Accent}" />
+                </HorizontalStackLayout>
+                <VerticalStackLayout Spacing="2">
+                    <Label Text="Tâches" FontSize="18" FontAttributes="Bold" TextColor="White" />
+                    <Label Text="Mariage Alain &amp; Rose · Par responsable" FontSize="12" TextColor="#DCE8E2" />
+                </VerticalStackLayout>
+            </VerticalStackLayout>
+        </Border>
+
+        <!-- Main Content -->
+        <ScrollView Grid.Row="1" Padding="14,14">
+            <VerticalStackLayout Spacing="12">
+                <!-- Committee Section Header -->
+                <Grid ColumnDefinitions="*,Auto" Margin="2,4,0,0">
+                    <Label Text="Responsables du comité" Style="{StaticResource SectionTitle}" VerticalOptions="Center" />
+                    <Label Grid.Column="1" Text="Gérer le comité ›" FontSize="12" FontAttributes="Bold" TextColor="{StaticResource PrimaryLight}" VerticalOptions="Center">
+                        <Label.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="OnManageResponsiblesClicked" />
+                        </Label.GestureRecognizers>
+                    </Label>
+                </Grid>
+
+                <!-- Responsibles dynamic filter -->
+                <FlexLayout x:Name="ResponsiblesFilterLayout" Wrap="Wrap" JustifyContent="Start" />
+
+                <!-- Tasks Section Header -->
+                <Label Text="Liste des tâches" Style="{StaticResource SectionTitle}" Margin="2,6,0,0" />
+
+                <!-- Task 1: Urgente / A faire -->
+                <Border x:Name="TaskCard1" Style="{StaticResource CardFrame}">
+                    <Grid ColumnDefinitions="*,Auto">
+                        <VerticalStackLayout Spacing="2">
+                            <Label Text="Réserver la salle" Style="{StaticResource SectionTitle}" />
+                            <Label Text="Avant le 20 nov. · Djon" Style="{StaticResource CaptionText}" />
+                        </VerticalStackLayout>
+                        <Border Grid.Column="1" BackgroundColor="{StaticResource ErrorLight}" StrokeShape="RoundRectangle 6" Stroke="Transparent" Padding="8,3" VerticalOptions="Center">
+                            <Label Text="À faire" FontSize="11" FontAttributes="Bold" TextColor="{StaticResource Error}" />
+                        </Border>
+                    </Grid>
+                </Border>
+
+                <!-- Task 2: En cours -->
+                <Border x:Name="TaskCard2" Style="{StaticResource CardFrame}">
+                    <Grid ColumnDefinitions="*,Auto">
+                        <VerticalStackLayout Spacing="2">
+                            <Label Text="Commander les boissons" Style="{StaticResource SectionTitle}" />
+                            <Label Text="Avant le 01 déc. · Djon" Style="{StaticResource CaptionText}" />
+                        </VerticalStackLayout>
+                        <Border Grid.Column="1" BackgroundColor="{StaticResource WarningLight}" StrokeShape="RoundRectangle 6" Stroke="Transparent" Padding="8,3" VerticalOptions="Center">
+                            <Label Text="En cours" FontSize="11" FontAttributes="Bold" TextColor="{StaticResource Warning}" />
+                        </Border>
+                    </Grid>
+                </Border>
+
+                <!-- Task 3: Terminé -->
+                <Border x:Name="TaskCard3" Style="{StaticResource CardFrame}">
+                    <Grid ColumnDefinitions="*,Auto">
+                        <VerticalStackLayout Spacing="2">
+                            <Label Text="Envoyer les invitations" Style="{StaticResource SectionTitle}" TextColor="{StaticResource TextSecondary}" />
+                            <Label Text="Fait le 02 nov. · Laeticia" Style="{StaticResource CaptionText}" />
+                        </VerticalStackLayout>
+                        <Border Grid.Column="1" BackgroundColor="{StaticResource SuccessLight}" StrokeShape="RoundRectangle 6" Stroke="Transparent" Padding="8,3" VerticalOptions="Center">
+                            <Label Text="Terminé" FontSize="11" FontAttributes="Bold" TextColor="{StaticResource Success}" />
+                        </Border>
+                    </Grid>
+                </Border>
+
+                <!-- Task 4: Terminé -->
+                <Border x:Name="TaskCard4" Style="{StaticResource CardFrame}">
+                    <Grid ColumnDefinitions="*,Auto">
+                        <VerticalStackLayout Spacing="2">
+                            <Label Text="Choisir le traiteur" Style="{StaticResource SectionTitle}" TextColor="{StaticResource TextSecondary}" />
+                            <Label Text="Fait le 28 oct. · Patricia" Style="{StaticResource CaptionText}" />
+                        </VerticalStackLayout>
+                        <Border Grid.Column="1" BackgroundColor="{StaticResource SuccessLight}" StrokeShape="RoundRectangle 6" Stroke="Transparent" Padding="8,3" VerticalOptions="Center">
+                            <Label Text="Terminé" FontSize="11" FontAttributes="Bold" TextColor="{StaticResource Success}" />
+                        </Border>
+                    </Grid>
+                </Border>
+
+                <!-- Add Task Button -->
+                <Button Text="+ Nouvelle tâche" Style="{StaticResource PrimaryButton}" Clicked="OnAddTaskClicked" Margin="0,4,0,8" />
+            </VerticalStackLayout>
+        </ScrollView>
+
+        <!-- Bottom Tab Navigation -->
+        <Border Grid.Row="2" Style="{StaticResource BottomNavBar}">
+            <Grid ColumnDefinitions="*,*,*,*,*">
+                <VerticalStackLayout Grid.Column="0" HorizontalOptions="Center" Spacing="4">
+                    <VerticalStackLayout.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="OnNavAccueilTapped" />
+                    </VerticalStackLayout.GestureRecognizers>
+                    <Label Text="Accueil" FontSize="12" TextColor="{StaticResource TextSecondary}" HorizontalOptions="Center" />
+                    <BoxView HeightRequest="3" WidthRequest="20" BackgroundColor="Transparent" HorizontalOptions="Center" />
+                </VerticalStackLayout>
+
+                <VerticalStackLayout Grid.Column="1" HorizontalOptions="Center" Spacing="4">
+                    <VerticalStackLayout.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="OnNavInvitesTapped" />
+                    </VerticalStackLayout.GestureRecognizers>
+                    <Label Text="Invités" FontSize="12" TextColor="{StaticResource TextSecondary}" HorizontalOptions="Center" />
+                    <BoxView HeightRequest="3" WidthRequest="20" BackgroundColor="Transparent" HorizontalOptions="Center" />
+                </VerticalStackLayout>
+
+                <VerticalStackLayout Grid.Column="2" HorizontalOptions="Center" Spacing="4">
+                    <VerticalStackLayout.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="OnNavBudgetTapped" />
+                    </VerticalStackLayout.GestureRecognizers>
+                    <Label Text="Budget" FontSize="12" TextColor="{StaticResource TextSecondary}" HorizontalOptions="Center" />
+                    <BoxView HeightRequest="3" WidthRequest="20" BackgroundColor="Transparent" HorizontalOptions="Center" />
+                </VerticalStackLayout>
+
+                <!-- Taches Tab (Actif) -->
+                <VerticalStackLayout Grid.Column="3" HorizontalOptions="Center" Spacing="4">
+                    <Label Text="Tâches" FontSize="12" FontAttributes="Bold" TextColor="{StaticResource Primary}" HorizontalOptions="Center" />
+                    <BoxView HeightRequest="3" WidthRequest="20" BackgroundColor="{StaticResource Primary}" CornerRadius="2" HorizontalOptions="Center" />
+                </VerticalStackLayout>
+
+                <VerticalStackLayout Grid.Column="4" HorizontalOptions="Center" Spacing="4">
+                    <VerticalStackLayout.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="OnNavProfilTapped" />
+                    </VerticalStackLayout.GestureRecognizers>
+                    <Label Text="Profil" FontSize="12" TextColor="{StaticResource TextSecondary}" HorizontalOptions="Center" />
+                    <BoxView HeightRequest="3" WidthRequest="20" BackgroundColor="Transparent" HorizontalOptions="Center" />
+                </VerticalStackLayout>
+            </Grid>
+        </Border>
+    </Grid>
+</ContentPage>

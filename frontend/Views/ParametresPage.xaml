@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="FeteCam.Views.ParametresPage"
+             Title="Paramètres"
+             BackgroundColor="{StaticResource Background}">
+
+    <Grid RowDefinitions="Auto,*,Auto">
+        <!-- Top App Bar -->
+        <Border Grid.Row="0" Style="{StaticResource HeaderBar}">
+            <VerticalStackLayout Spacing="8">
+                <HorizontalStackLayout Spacing="4">
+                    <HorizontalStackLayout.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="OnBackTapped" />
+                    </HorizontalStackLayout.GestureRecognizers>
+                    <Label Text="‹ Retour" FontSize="14" FontAttributes="Bold" TextColor="{StaticResource Accent}" />
+                </HorizontalStackLayout>
+                <VerticalStackLayout Spacing="2">
+                    <Label Text="Paramètres" FontSize="18" FontAttributes="Bold" TextColor="White" />
+                    <Label Text="Préférences et configuration de compte" FontSize="12" TextColor="#DCE8E2" />
+                </VerticalStackLayout>
+            </VerticalStackLayout>
+        </Border>
+
+        <!-- Main Content -->
+        <ScrollView Grid.Row="1" Padding="14,14">
+            <VerticalStackLayout Spacing="14">
+                <Label Text="Général" Style="{StaticResource SectionTitle}" Margin="2,4,0,0" />
+                <Border Style="{StaticResource CardFrame}">
+                    <VerticalStackLayout Spacing="12">
+                        <Grid ColumnDefinitions="*,Auto">
+                            <VerticalStackLayout Spacing="1">
+                                <Label Text="Devise principale" FontSize="14" FontAttributes="Bold" TextColor="{StaticResource TextPrimary}" />
+                                <Label Text="Franc CFA (XAF)" Style="{StaticResource CaptionText}" />
+                            </VerticalStackLayout>
+                            <Label Grid.Column="1" Text="FCFA" FontSize="13" FontAttributes="Bold" TextColor="{StaticResource Primary}" VerticalOptions="Center" />
+                        </Grid>
+
+                        <BoxView HeightRequest="1" BackgroundColor="{StaticResource Border}" />
+
+                        <Grid ColumnDefinitions="*,Auto">
+                            <VerticalStackLayout Spacing="1">
+                                <Label Text="Langue" FontSize="14" FontAttributes="Bold" TextColor="{StaticResource TextPrimary}" />
+                                <Label Text="Français" Style="{StaticResource CaptionText}" />
+                            </VerticalStackLayout>
+                            <Label Grid.Column="1" Text="FR" FontSize="13" FontAttributes="Bold" TextColor="{StaticResource Primary}" VerticalOptions="Center" />
+                        </Grid>
+
+                        <BoxView HeightRequest="1" BackgroundColor="{StaticResource Border}" />
+
+                        <Grid ColumnDefinitions="*,Auto">
+                            <VerticalStackLayout Spacing="1">
+                                <Label Text="Format de date" FontSize="14" FontAttributes="Bold" TextColor="{StaticResource TextPrimary}" />
+                                <Label Text="Jour / Mois / Année" Style="{StaticResource CaptionText}" />
+                            </VerticalStackLayout>
+                            <Label Grid.Column="1" Text="JJ/MM/AAAA" FontSize="13" TextColor="{StaticResource TextSecondary}" VerticalOptions="Center" />
+                        </Grid>
+                    </VerticalStackLayout>
+                </Border>
+
+                <Label Text="Données &amp; Sauvegarde" Style="{StaticResource SectionTitle}" Margin="2,4,0,0" />
+                <Border Style="{StaticResource CardFrame}">
+                    <VerticalStackLayout Spacing="12">
+                        <Grid ColumnDefinitions="*,Auto">
+                            <VerticalStackLayout Spacing="1">
+                                <Label Text="Sauvegarde automatique" FontSize="14" FontAttributes="Bold" TextColor="{StaticResource TextPrimary}" />
+                                <Label Text="Enregistrer les modifications en local" Style="{StaticResource CaptionText}" />
+                            </VerticalStackLayout>
+                            <Switch Grid.Column="1" IsToggled="True" OnColor="{StaticResource Primary}" />
+                        </Grid>
+                    </VerticalStackLayout>
+                </Border>
+
+                <Label Text="À propos" Style="{StaticResource SectionTitle}" Margin="2,4,0,0" />
+                <Border Style="{StaticResource CardFrame}">
+                    <VerticalStackLayout Spacing="6">
+                        <Label Text="FêteCam - Gestion de Cérémonies" FontSize="14" FontAttributes="Bold" TextColor="{StaticResource TextPrimary}" />
+                        <Label Text="Version 1.0.0" Style="{StaticResource CaptionText}" />
+                        <Label Text="Conçu pour l'organisation simplifiée des mariages, veillées, tontines et réceptions au Cameroun." FontSize="12" TextColor="{StaticResource TextSecondary}" Margin="0,4,0,0" />
+                    </VerticalStackLayout>
+                </Border>
+            </VerticalStackLayout>
+        </ScrollView>
+
+        <!-- Bottom Action Button -->
+        <Border Grid.Row="2" BackgroundColor="{StaticResource Surface}" Stroke="{StaticResource Border}" StrokeThickness="1,0,0,0" Padding="14,10,14,16">
+            <Button Text="Enregistrer les préférences" Style="{StaticResource PrimaryButton}" Clicked="OnSavePreferencesClicked" />
+        </Border>
+    </Grid>
+</ContentPage>

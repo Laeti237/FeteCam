@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="FeteCam.Views.ProfilPage"
+             Title="Profil"
+             BackgroundColor="{StaticResource Background}">
+
+    <Grid RowDefinitions="Auto,*,Auto">
+        <!-- Top App Bar -->
+        <Border Grid.Row="0" Style="{StaticResource HeaderBar}">
+            <VerticalStackLayout Spacing="8">
+                <HorizontalStackLayout Spacing="4">
+                    <HorizontalStackLayout.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="OnBackTapped" />
+                    </HorizontalStackLayout.GestureRecognizers>
+                    <Label Text="‹ Retour" FontSize="14" FontAttributes="Bold" TextColor="{StaticResource Accent}" />
+                </HorizontalStackLayout>
+                <VerticalStackLayout Spacing="2">
+                    <Label Text="Profil" FontSize="18" FontAttributes="Bold" TextColor="White" />
+                    <Label Text="Compte FêteCam" FontSize="12" TextColor="#DCE8E2" />
+                </VerticalStackLayout>
+            </VerticalStackLayout>
+        </Border>
+
+        <!-- Main Content -->
+        <ScrollView Grid.Row="1" Padding="14,14">
+            <VerticalStackLayout Spacing="12">
+                <!-- User Card -->
+                <Border Style="{StaticResource CardFrame}">
+                    <Grid ColumnDefinitions="Auto,*">
+                        <Border WidthRequest="50" HeightRequest="50" StrokeShape="RoundRectangle 25" BackgroundColor="{StaticResource Primary}" Stroke="Transparent" VerticalOptions="Center">
+                            <Label Text="LN" FontSize="18" FontAttributes="Bold" TextColor="White" HorizontalOptions="Center" VerticalOptions="Center" />
+                        </Border>
+                        <VerticalStackLayout Grid.Column="1" Spacing="2" Margin="14,0,0,0" VerticalOptions="Center">
+                            <Label Text="Laeticia Ngono" FontSize="16" FontAttributes="Bold" TextColor="{StaticResource TextPrimary}" />
+                            <Label Text="+237 671 22 33 44 · Douala" Style="{StaticResource CaptionText}" />
+                        </VerticalStackLayout>
+                    </Grid>
+                </Border>
+
+                <!-- Navigation List -->
+                <!-- Item 1: Mes événements -->
+                <Border Style="{StaticResource CardFrame}">
+                    <Grid ColumnDefinitions="*,Auto">
+                        <VerticalStackLayout Spacing="2">
+                            <Label Text="Mes événements" Style="{StaticResource SectionTitle}" />
+                            <Label Text="3 en cours" Style="{StaticResource CaptionText}" />
+                        </VerticalStackLayout>
+                        <Label Grid.Column="1" Text="›" FontSize="20" FontAttributes="Bold" TextColor="{StaticResource TextSecondary}" VerticalOptions="Center" />
+                    </Grid>
+                </Border>
+
+                <!-- Item 2: Notifications -->
+                <Border Style="{StaticResource CardFrame}">
+                    <Grid ColumnDefinitions="*,Auto">
+                        <VerticalStackLayout Spacing="2">
+                            <Label Text="Notifications" Style="{StaticResource SectionTitle}" />
+                            <Label Text="Rappels SMS et confirmations activés" Style="{StaticResource CaptionText}" />
+                        </VerticalStackLayout>
+                        <Label Grid.Column="1" Text="›" FontSize="20" FontAttributes="Bold" TextColor="{StaticResource TextSecondary}" VerticalOptions="Center" />
+                    </Grid>
+                </Border>
+
+                <!-- Item 3: Paramètres -->
+                <Border Style="{StaticResource CardFrame}">
+                    <Grid ColumnDefinitions="*,Auto">
+                        <VerticalStackLayout Spacing="2">
+                            <Label Text="Paramètres" Style="{StaticResource SectionTitle}" />
+                            <Label Text="Configuration et synchronisation" Style="{StaticResource CaptionText}" />
+                        </VerticalStackLayout>
+                        <Label Grid.Column="1" Text="›" FontSize="20" FontAttributes="Bold" TextColor="{StaticResource TextSecondary}" VerticalOptions="Center" />
+                    </Grid>
+                </Border>
+
+                <!-- Item 4: Aide & Support -->
+                <Border Style="{StaticResource CardFrame}">
+                    <Grid ColumnDefinitions="*,Auto">
+                        <VerticalStackLayout Spacing="2">
+                            <Label Text="Aide" Style="{StaticResource SectionTitle}" />
+                            <Label Text="Support et FAQ" Style="{StaticResource CaptionText}" />
+                        </VerticalStackLayout>
+                        <Label Grid.Column="1" Text="›" FontSize="20" FontAttributes="Bold" TextColor="{StaticResource TextSecondary}" VerticalOptions="Center" />
+                    </Grid>
+                </Border>
+
+                <!-- Logout Button -->
+                <Button Text="Se déconnecter" TextColor="{StaticResource Error}" BackgroundColor="{StaticResource Surface}" BorderColor="{StaticResource Border}" BorderWidth="1" CornerRadius="10" HeightRequest="48" FontAttributes="Bold" Clicked="OnLogoutClicked" Margin="0,8,0,8" />
+            </VerticalStackLayout>
+        </ScrollView>
+
+        <!-- Bottom Tab Navigation -->
+        <Border Grid.Row="2" Style="{StaticResource BottomNavBar}">
+            <Grid ColumnDefinitions="*,*,*,*,*">
+                <VerticalStackLayout Grid.Column="0" HorizontalOptions="Center" Spacing="4">
+                    <VerticalStackLayout.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="OnNavAccueilTapped" />
+                    </VerticalStackLayout.GestureRecognizers>
+                    <Label Text="Accueil" FontSize="12" TextColor="{StaticResource TextSecondary}" HorizontalOptions="Center" />
+                    <BoxView HeightRequest="3" WidthRequest="20" BackgroundColor="Transparent" HorizontalOptions="Center" />
+                </VerticalStackLayout>
+
+                <VerticalStackLayout Grid.Column="1" HorizontalOptions="Center" Spacing="4">
+                    <VerticalStackLayout.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="OnNavInvitesTapped" />
+                    </VerticalStackLayout.GestureRecognizers>
+                    <Label Text="Invités" FontSize="12" TextColor="{StaticResource TextSecondary}" HorizontalOptions="Center" />
+                    <BoxView HeightRequest="3" WidthRequest="20" BackgroundColor="Transparent" HorizontalOptions="Center" />
+                </VerticalStackLayout>
+
+                <VerticalStackLayout Grid.Column="2" HorizontalOptions="Center" Spacing="4">
+                    <VerticalStackLayout.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="OnNavBudgetTapped" />
+                    </VerticalStackLayout.GestureRecognizers>
+                    <Label Text="Budget" FontSize="12" TextColor="{StaticResource TextSecondary}" HorizontalOptions="Center" />
+                    <BoxView HeightRequest="3" WidthRequest="20" BackgroundColor="Transparent" HorizontalOptions="Center" />
+                </VerticalStackLayout>
+
+                <VerticalStackLayout Grid.Column="3" HorizontalOptions="Center" Spacing="4">
+                    <VerticalStackLayout.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="OnNavTachesTapped" />
+                    </VerticalStackLayout.GestureRecognizers>
+                    <Label Text="Tâches" FontSize="12" TextColor="{StaticResource TextSecondary}" HorizontalOptions="Center" />
+                    <BoxView HeightRequest="3" WidthRequest="20" BackgroundColor="Transparent" HorizontalOptions="Center" />
+                </VerticalStackLayout>
+
+                <!-- Profil Tab (Actif) -->
+                <VerticalStackLayout Grid.Column="4" HorizontalOptions="Center" Spacing="4">
+                    <Label Text="Profil" FontSize="12" FontAttributes="Bold" TextColor="{StaticResource Primary}" HorizontalOptions="Center" />
+                    <BoxView HeightRequest="3" WidthRequest="20" BackgroundColor="{StaticResource Primary}" CornerRadius="2" HorizontalOptions="Center" />
+                </VerticalStackLayout>
+            </Grid>
+        </Border>
+    </Grid>
+</ContentPage>
