@@ -13,7 +13,16 @@
                     <HorizontalStackLayout.GestureRecognizers>
                         <TapGestureRecognizer Tapped="OnBackTapped" />
                     </HorizontalStackLayout.GestureRecognizers>
-                    <Label Text="‹ Retour" FontSize="14" FontAttributes="Bold" TextColor="{StaticResource Accent}" />
+                    <Border BackgroundColor="#24FFFFFF" Stroke="Transparent" StrokeShape="RoundRectangle 17" Padding="12,7" VerticalOptions="Center">
+                        <Label FontSize="14" FontAttributes="Bold">
+                            <Label.FormattedText>
+                                <FormattedString>
+                                    <Span Text="‹ " TextColor="{StaticResource Accent}" />
+                                    <Span Text="Retour" TextColor="White" />
+                                </FormattedString>
+                            </Label.FormattedText>
+                        </Label>
+                    </Border>
                 </HorizontalStackLayout>
                 <VerticalStackLayout Spacing="2">
                     <Label Text="Notifications" FontSize="18" FontAttributes="Bold" TextColor="White" />

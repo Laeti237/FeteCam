@@ -65,6 +65,9 @@ public static class CoreEndpoints
             e.Date = req.Date;
             e.Location = req.Location?.Trim() ?? "";
             e.Status = string.IsNullOrWhiteSpace(req.Status) ? e.Status : req.Status;
+            var invitations = await db.Invitations.Where(i => i.EventId == id).ToListAsync();
+            foreach (var inv in invitations)
+                inv.EventName = e.Name;
             await db.SaveChangesAsync();
             return Results.Ok(new EventDto(e.Id, e.Name, e.Date, e.Location, e.Status, "Organisateur"));
         });

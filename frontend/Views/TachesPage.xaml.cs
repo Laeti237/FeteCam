@@ -240,11 +240,31 @@ public partial class TachesPage : ContentPage
             HorizontalOptions = LayoutOptions.Center,
             VerticalOptions = LayoutOptions.Center
         };
+
+        var statusTap = new TapGestureRecognizer();
+        statusTap.Tapped += async (_, _) => await OnTaskStatusChosen(item);
+        badge.GestureRecognizers.Add(statusTap);
+
         Grid.SetColumn(badge, 1);
         grid.Children.Add(badge);
 
         border.Content = grid;
         return border;
+    }
+
+    private async Task OnTaskStatusChosen(TaskItem item)
+    {
+        var choice = await DisplayActionSheetAsync(
+            $"Statut — {item.Title}",
+            "Annuler",
+            null,
+            TaskService.Statuses);
+
+        if (string.IsNullOrEmpty(choice) || choice == "Annuler" || choice == item.Status)
+            return;
+
+        await TaskService.Instance.SetStatusAsync(item, choice);
+        LoadTasks();
     }
 
     private async void OnManageResponsiblesClicked(object? sender, EventArgs e)

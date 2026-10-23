@@ -15,7 +15,7 @@ public class EventRecord
 {
     public int Id { get; set; }
     public string Name { get; set; } = "";
-    public DateOnly? Date { get; set; }
+    public string? Date { get; set; }
     public string Location { get; set; } = "";
     public string Status { get; set; } = "En préparation";
     public int OwnerUserId { get; set; }

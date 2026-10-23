@@ -13,11 +13,20 @@
                     <HorizontalStackLayout.GestureRecognizers>
                         <TapGestureRecognizer Tapped="OnBackTapped" />
                     </HorizontalStackLayout.GestureRecognizers>
-                    <Label Text="‹ Retour" FontSize="14" FontAttributes="Bold" TextColor="{StaticResource Accent}" />
+                    <Border BackgroundColor="#24FFFFFF" Stroke="Transparent" StrokeShape="RoundRectangle 17" Padding="12,7" VerticalOptions="Center">
+                        <Label FontSize="14" FontAttributes="Bold">
+                            <Label.FormattedText>
+                                <FormattedString>
+                                    <Span Text="‹ " TextColor="{StaticResource Accent}" />
+                                    <Span Text="Retour" TextColor="White" />
+                                </FormattedString>
+                            </Label.FormattedText>
+                        </Label>
+                    </Border>
                 </HorizontalStackLayout>
                 <VerticalStackLayout Spacing="2">
-                    <Label Text="Nouvel événement" FontSize="18" FontAttributes="Bold" TextColor="White" />
-                    <Label Text="Étape 1 sur 3 · Type et détails" FontSize="12" TextColor="#DCE8E2" />
+                    <Label x:Name="HeaderTitleLabel" Text="Nouvel événement" FontSize="18" FontAttributes="Bold" TextColor="White" />
+                    <Label x:Name="HeaderSubtitleLabel" Text="Étape 1 sur 3 · Type et détails" FontSize="12" TextColor="#DCE8E2" />
                 </VerticalStackLayout>
             </VerticalStackLayout>
         </Border>
@@ -50,28 +59,33 @@
                         <VerticalStackLayout Spacing="4">
                             <Label Text="Nom de la cérémonie" Style="{StaticResource CaptionText}" FontAttributes="Bold" TextColor="{StaticResource TextPrimary}" />
                             <Border StrokeShape="RoundRectangle 8" Stroke="{StaticResource Border}" Padding="10,0" BackgroundColor="{StaticResource Surface}">
-                                <Entry Placeholder="Ex. Mariage Alain &amp; Rose" Text="Mariage Alain &amp; Rose" Style="{StaticResource StyledEntry}" />
+                                <Entry x:Name="NameEntry" AutomationId="NameEntry" Placeholder="Ex. Mariage Alain &amp; Rose" Text="Mariage Alain &amp; Rose" Style="{StaticResource StyledEntry}" />
                             </Border>
                         </VerticalStackLayout>
 
                         <VerticalStackLayout Spacing="4">
                             <Label Text="Date et heure" Style="{StaticResource CaptionText}" FontAttributes="Bold" TextColor="{StaticResource TextPrimary}" />
                             <Border StrokeShape="RoundRectangle 8" Stroke="{StaticResource Border}" Padding="10,0" BackgroundColor="{StaticResource Surface}">
-                                <Entry Placeholder="JJ/MM/AAAA · HH:MM" Text="14/12/2026 · 14:00" Style="{StaticResource StyledEntry}" />
+                                <Entry x:Name="DateEntry" AutomationId="DateEntry" Placeholder="JJ/MM/AAAA · HH:MM" Text="14/12/2026 · 14:00" Style="{StaticResource StyledEntry}" />
                             </Border>
                         </VerticalStackLayout>
 
                         <VerticalStackLayout Spacing="4">
                             <Label Text="Lieu" Style="{StaticResource CaptionText}" FontAttributes="Bold" TextColor="{StaticResource TextPrimary}" />
                             <Border StrokeShape="RoundRectangle 8" Stroke="{StaticResource Border}" Padding="10,0" BackgroundColor="{StaticResource Surface}">
-                                <Entry Placeholder="Ville, salle" Text="Douala, Bonanjo" Style="{StaticResource StyledEntry}" />
+                                <Entry x:Name="LocationEntry" AutomationId="LocationEntry" Placeholder="Ville, salle" Text="Douala, Bonanjo" Style="{StaticResource StyledEntry}" />
                             </Border>
+                        </VerticalStackLayout>
+
+                        <VerticalStackLayout Spacing="4">
+                            <Label Text="Statut" Style="{StaticResource CaptionText}" FontAttributes="Bold" TextColor="{StaticResource TextPrimary}" />
+                            <FlexLayout x:Name="StatusChipsLayout" Wrap="Wrap" JustifyContent="Start" />
                         </VerticalStackLayout>
 
                         <VerticalStackLayout Spacing="4">
                             <Label Text="Budget prévisionnel (FCFA)" Style="{StaticResource CaptionText}" FontAttributes="Bold" TextColor="{StaticResource TextPrimary}" />
                             <Border StrokeShape="RoundRectangle 8" Stroke="{StaticResource Border}" Padding="10,0" BackgroundColor="{StaticResource Surface}">
-                                <Entry Placeholder="Montant FCFA" Text="2 000 000" Keyboard="Numeric" Style="{StaticResource StyledEntry}" />
+                                <Entry x:Name="BudgetEntry" AutomationId="BudgetEntry" Placeholder="Montant FCFA" Text="2 000 000" Keyboard="Numeric" Style="{StaticResource StyledEntry}" />
                             </Border>
                         </VerticalStackLayout>
                     </VerticalStackLayout>
@@ -81,7 +95,7 @@
 
         <!-- Bottom Action Button -->
         <Border Grid.Row="2" BackgroundColor="{StaticResource Surface}" Stroke="{StaticResource Border}" StrokeThickness="1" Padding="14,10,14,16">
-            <Button Text="Créer l'événement" Style="{StaticResource PrimaryButton}" Clicked="OnCreateClicked" />
+            <Button x:Name="CreateButton" Text="Créer l'événement" Style="{StaticResource PrimaryButton}" Clicked="OnCreateClicked" AutomationId="SubmitButton" />
         </Border>
     </Grid>
 </ContentPage>

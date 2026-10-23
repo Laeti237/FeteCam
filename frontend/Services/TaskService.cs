@@ -10,6 +10,8 @@ public class TaskService
 
     public ObservableCollection<TaskItem> Tasks { get; } = new();
 
+    public static readonly string[] Statuses = { "À faire", "En cours", "Terminé" };
+
     private bool _refreshing;
 
     private TaskService()
@@ -159,6 +161,29 @@ public class TaskService
         };
         ApplyStatus(item);
         Tasks.Add(item);
+    }
+
+    public async Task SetStatusAsync(TaskItem item, string status)
+    {
+        if (string.IsNullOrWhiteSpace(status) || item.Status == status) return;
+
+        item.Status = status;
+        ApplyStatus(item);
+
+        if (ApiService.IsAuthenticated && item.ServerId is int tid)
+        {
+            var evt = EventService.Instance.GetByName(item.EventName);
+            var seid = item.ServerEventId
+                ?? await ApiService.Instance.EnsureEventIdAsync(
+                    item.EventName,
+                    evt?.Location ?? "",
+                    evt?.Status ?? "En préparation");
+
+            if (seid is int eventId)
+                await ApiService.Instance.UpdateTaskAsync(
+                    eventId, tid, item.Title, item.Responsible,
+                    item.DueDate, item.Status, item.Details);
+        }
     }
 
     public async Task RemoveAsync(string id)

@@ -10,6 +10,8 @@ public class GuestService
 
     public ObservableCollection<GuestItem> Guests { get; } = new();
 
+    public static readonly string[] Statuses = { "Confirmé", "En attente", "Absent" };
+
     private bool _refreshing;
 
     private GuestService()
@@ -144,6 +146,28 @@ public class GuestService
         };
         ApplyStatusColors(item);
         Guests.Add(item);
+    }
+
+    public async Task SetStatusAsync(GuestItem item, string status)
+    {
+        if (string.IsNullOrWhiteSpace(status) || item.Status == status) return;
+
+        item.Status = status;
+        ApplyStatusColors(item);
+
+        if (ApiService.IsAuthenticated && item.ServerId is int gid)
+        {
+            var evt = EventService.Instance.GetByName(item.EventName);
+            var seid = item.ServerEventId
+                ?? await ApiService.Instance.EnsureEventIdAsync(
+                    item.EventName,
+                    evt?.Location ?? "",
+                    evt?.Status ?? "En préparation");
+
+            if (seid is int eventId)
+                await ApiService.Instance.UpdateGuestAsync(
+                    eventId, gid, item.Name, item.Phone, item.PersonCount, item.Status);
+        }
     }
 
     public async Task RemoveAsync(string id)

@@ -5,9 +5,9 @@ public record LoginRequest(string Email, string Password);
 public record AuthResponse(string Token, UserDto User);
 public record UserDto(int Id, string Email, string Name, string Phone, string City);
 
-public record EventDto(int Id, string Name, DateOnly? Date, string Location, string Status, string Role);
-public record CreateEventRequest(string Name, DateOnly? Date, string Location, string Status);
-public record UpdateEventRequest(string Name, DateOnly? Date, string Location, string Status);
+public record EventDto(int Id, string Name, string? Date, string Location, string Status, string Role);
+public record CreateEventRequest(string Name, string? Date, string Location, string Status);
+public record UpdateEventRequest(string Name, string? Date, string Location, string Status);
 
 public record GuestDto(int Id, int EventId, string Name, string Phone, string Category, string Status, int PersonCount);
 public record UpdateGuestRequest(string Name, string Phone, string Category, string Status, int PersonCount);

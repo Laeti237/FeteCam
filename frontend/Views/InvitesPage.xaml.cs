@@ -266,10 +266,29 @@ public partial class InvitesPage : ContentPage
         };
         statusBorder.Content = statusLabel;
 
+        var statusTap = new TapGestureRecognizer();
+        statusTap.Tapped += async (_, _) => await OnGuestStatusChosen(item);
+        statusBorder.GestureRecognizers.Add(statusTap);
+
         grid.Children.Add(statusBorder);
 
         border.Content = grid;
         return border;
+    }
+
+    private async Task OnGuestStatusChosen(GuestItem item)
+    {
+        var choice = await DisplayActionSheetAsync(
+            $"Statut — {item.Name}",
+            "Annuler",
+            null,
+            GuestService.Statuses);
+
+        if (string.IsNullOrEmpty(choice) || choice == "Annuler" || choice == item.Status)
+            return;
+
+        await _guestService.SetStatusAsync(item, choice);
+        LoadGuests();
     }
 
     private async void OnBackTapped(object? sender, EventArgs e)

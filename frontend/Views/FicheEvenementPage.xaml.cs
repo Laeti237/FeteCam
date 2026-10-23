@@ -24,6 +24,11 @@ public partial class FicheEvenementPage : ContentPage
         await Navigation.PopAsync();
     }
 
+    private async void OnEditEventClicked(object sender, EventArgs e)
+    {
+        await Navigation.PushAsync(new CreationPage(EventService.Instance.Current));
+    }
+
     private async void OnBilanClicked(object sender, EventArgs e)
     {
         await Navigation.PushAsync(new BilanPage());

@@ -111,7 +111,7 @@ public partial class MesEvenementsPage : ContentPage
 
         var badge = new Border
         {
-            BackgroundColor = (Color)Application.Current!.Resources["SuccessLight"],
+            BackgroundColor = Color.FromArgb(item.StatusColor),
             StrokeShape = new RoundRectangle { CornerRadius = new CornerRadius(6) },
             Stroke = Colors.Transparent,
             Padding = new Thickness(6, 4),
@@ -123,7 +123,7 @@ public partial class MesEvenementsPage : ContentPage
             Text = item.Status,
             FontSize = 11,
             FontAttributes = FontAttributes.Bold,
-            TextColor = (Color)Application.Current!.Resources["Success"],
+            TextColor = Color.FromArgb(item.StatusTextColor),
             HorizontalOptions = LayoutOptions.Center,
             VerticalOptions = LayoutOptions.Center
         };
