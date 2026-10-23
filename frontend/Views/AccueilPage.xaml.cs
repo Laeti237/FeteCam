@@ -1,3 +1,5 @@
+using FeteCam.Services;
+
 namespace FeteCam.Views;
 
 public partial class AccueilPage : ContentPage
@@ -12,8 +14,20 @@ public partial class AccueilPage : ContentPage
         await Navigation.PushAsync(new CreationPage());
     }
 
-    private async void OnEventTapped(object sender, EventArgs e)
+    private async void OnMariageTapped(object? sender, EventArgs e)
+        => await OpenEventAsync("Mariage Alain & Rose");
+
+    private async void OnAnniversaireTapped(object? sender, EventArgs e)
+        => await OpenEventAsync("Anniversaire 50 ans");
+
+    private async void OnVeilleeTapped(object? sender, EventArgs e)
+        => await OpenEventAsync("Veillée Mama Thérèse");
+
+    private async Task OpenEventAsync(string name)
     {
+        var evt = EventService.Instance.GetByName(name);
+        if (evt is not null)
+            EventService.Instance.Current = evt;
         await Navigation.PushAsync(new FicheEvenementPage());
     }
 

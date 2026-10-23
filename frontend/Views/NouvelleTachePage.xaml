@@ -17,7 +17,7 @@
                 </HorizontalStackLayout>
                 <VerticalStackLayout Spacing="2">
                     <Label Text="Nouvelle tâche" FontSize="18" FontAttributes="Bold" TextColor="White" />
-                    <Label Text="Mariage Alain &amp; Rose" FontSize="12" TextColor="#DCE8E2" />
+                    <Label x:Name="SubtitleLabel" Text="Sélectionnez un événement" FontSize="12" TextColor="#DCE8E2" />
                 </VerticalStackLayout>
             </VerticalStackLayout>
         </Border>
@@ -25,6 +25,12 @@
         <!-- Form ScrollView -->
         <ScrollView Grid.Row="1" Padding="14,14">
             <VerticalStackLayout Spacing="14">
+                <!-- Événement -->
+                <VerticalStackLayout Spacing="6">
+                    <Label Text="Événement" Style="{StaticResource SectionTitle}" />
+                    <FlexLayout x:Name="EventChips" Wrap="Wrap" JustifyContent="Start" />
+                </VerticalStackLayout>
+
                 <!-- Responsibles Choice -->
                 <VerticalStackLayout Spacing="6">
                     <Label Text="Responsable" Style="{StaticResource SectionTitle}" />
@@ -37,21 +43,21 @@
                         <VerticalStackLayout Spacing="4">
                             <Label Text="Titre de la tâche" Style="{StaticResource CaptionText}" FontAttributes="Bold" TextColor="{StaticResource TextPrimary}" />
                             <Border StrokeShape="RoundRectangle 8" Stroke="{StaticResource Border}" Padding="10,0" BackgroundColor="{StaticResource Surface}">
-                                <Entry Placeholder="Ex. Réserver la salle" Style="{StaticResource StyledEntry}" />
+                                <Entry x:Name="TitleEntry" Placeholder="Ex. Réserver la salle" Style="{StaticResource StyledEntry}" />
                             </Border>
                         </VerticalStackLayout>
 
                         <VerticalStackLayout Spacing="4">
                             <Label Text="Date limite" Style="{StaticResource CaptionText}" FontAttributes="Bold" TextColor="{StaticResource TextPrimary}" />
                             <Border StrokeShape="RoundRectangle 8" Stroke="{StaticResource Border}" Padding="10,0" BackgroundColor="{StaticResource Surface}">
-                                <Entry Placeholder="JJ/MM/AAAA" Style="{StaticResource StyledEntry}" />
+                                <Entry x:Name="DueDateEntry" Placeholder="JJ/MM/AAAA" Style="{StaticResource StyledEntry}" />
                             </Border>
                         </VerticalStackLayout>
 
                         <VerticalStackLayout Spacing="4">
                             <Label Text="Détails (optionnel)" Style="{StaticResource CaptionText}" FontAttributes="Bold" TextColor="{StaticResource TextPrimary}" />
                             <Border StrokeShape="RoundRectangle 8" Stroke="{StaticResource Border}" Padding="10,0" BackgroundColor="{StaticResource Surface}">
-                                <Entry Placeholder="Instructions complémentaires" Style="{StaticResource StyledEntry}" />
+                                <Entry x:Name="DetailsEntry" Placeholder="Instructions complémentaires" Style="{StaticResource StyledEntry}" />
                             </Border>
                         </VerticalStackLayout>
                     </VerticalStackLayout>
@@ -60,7 +66,7 @@
         </ScrollView>
 
         <!-- Bottom Action Button -->
-        <Border Grid.Row="2" BackgroundColor="{StaticResource Surface}" Stroke="{StaticResource Border}" StrokeThickness="1,0,0,0" Padding="14,10,14,16">
+        <Border Grid.Row="2" BackgroundColor="{StaticResource Surface}" Stroke="{StaticResource Border}" StrokeThickness="1" Padding="14,10,14,16">
             <Button Text="Créer la tâche" Style="{StaticResource PrimaryButton}" Clicked="OnSaveClicked" />
         </Border>
     </Grid>

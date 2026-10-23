@@ -17,6 +17,9 @@ public class ResponsibleService
         Responsibles.Add(new ResponsibleItem { Name = "Patricia", Role = "Logistique & Boissons", Phone = "+237 655 77 88 99", TaskCount = 1 });
     }
 
+    public ResponsibleItem? FindByName(string name)
+        => Responsibles.FirstOrDefault(r => string.Equals(r.Name, name, StringComparison.OrdinalIgnoreCase));
+
     public void Add(string name, string role = "Membre du comité", string phone = "")
     {
         if (string.IsNullOrWhiteSpace(name)) return;
@@ -31,10 +34,6 @@ public class ResponsibleService
     public bool Remove(string id)
     {
         var item = Responsibles.FirstOrDefault(r => r.Id == id);
-        if (item != null)
-        {
-            return Responsibles.Remove(item);
-        }
-        return false;
+        return item != null && Responsibles.Remove(item);
     }
 }

@@ -7,6 +7,10 @@ public class GuestItem
     public string Phone { get; set; } = string.Empty;
     public int PersonCount { get; set; } = 1;
     public string Status { get; set; } = "En attente";
+    public string EventId { get; set; } = string.Empty;
+    public string EventName { get; set; } = string.Empty;
+    public int? ServerId { get; set; }
+    public int? ServerEventId { get; set; }
     public string StatusColor { get; set; } = "#FBEBCB";
     public string Initials => string.IsNullOrWhiteSpace(Name) ? "?" : (Name.Length <= 2 ? Name.ToUpper() : Name.Substring(0, 2).ToUpper());
     public string StatusTextColor { get; set; } = "#FFFFFF";

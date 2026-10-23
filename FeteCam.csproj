@@ -64,6 +64,16 @@
 	</ItemGroup>
 
 	<ItemGroup>
+		<!-- Backend (ASP.NET Core) is a separate project, not part of the MAUI app -->
+		<Compile Remove="backend\**" />
+		<MauiXaml Remove="backend\**" />
+		<MauiAsset Remove="backend\**" />
+		<EmbeddedResource Remove="backend\**" />
+		<Content Remove="backend\**" />
+		<None Remove="backend\**\*" />
+	</ItemGroup>
+
+	<ItemGroup>
 		<PackageReference Include="Microsoft.Maui.Controls" Version="$(MauiVersion)" />
 		<PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="10.0.0" />
 	</ItemGroup>

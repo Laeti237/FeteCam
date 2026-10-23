@@ -48,7 +48,7 @@
                 <!-- Event 1: Mariage Alain & Rose -->
                 <Border Style="{StaticResource CardFrame}">
                     <Border.GestureRecognizers>
-                        <TapGestureRecognizer Tapped="OnEventTapped" />
+                        <TapGestureRecognizer Tapped="OnMariageTapped" />
                     </Border.GestureRecognizers>
                     <VerticalStackLayout Spacing="10">
                         <Grid ColumnDefinitions="Auto,*,Auto">
@@ -59,8 +59,8 @@
                                 <Label Text="Mariage Alain &amp; Rose" Style="{StaticResource SectionTitle}" />
                                 <Label Text="14 déc. · Douala" Style="{StaticResource CaptionText}" />
                             </VerticalStackLayout>
-                            <Border Grid.Column="2" BackgroundColor="{StaticResource SuccessLight}" StrokeShape="RoundRectangle 6" Stroke="Transparent" Padding="8,3" VerticalOptions="Start">
-                                <Label Text="Confirmé" FontSize="11" FontAttributes="Bold" TextColor="{StaticResource Success}" />
+                            <Border Grid.Column="2" BackgroundColor="{StaticResource SuccessLight}" StrokeShape="RoundRectangle 6" Stroke="Transparent" Padding="6,4" HeightRequest="32" VerticalOptions="Start">
+                                <Label Text="Confirmé" FontSize="11" FontAttributes="Bold" TextColor="{StaticResource Success}" HorizontalOptions="Center" VerticalOptions="Center" />
                             </Border>
                         </Grid>
 
@@ -86,7 +86,7 @@
                 <!-- Event 2: Anniversaire 50 ans -->
                 <Border Style="{StaticResource CardFrame}">
                     <Border.GestureRecognizers>
-                        <TapGestureRecognizer Tapped="OnEventTapped" />
+                        <TapGestureRecognizer Tapped="OnAnniversaireTapped" />
                     </Border.GestureRecognizers>
                     <VerticalStackLayout Spacing="10">
                         <Grid ColumnDefinitions="Auto,*,Auto">
@@ -97,8 +97,8 @@
                                 <Label Text="Anniversaire 50 ans" Style="{StaticResource SectionTitle}" />
                                 <Label Text="28 nov. · Yaoundé" Style="{StaticResource CaptionText}" />
                             </VerticalStackLayout>
-                            <Border Grid.Column="2" BackgroundColor="{StaticResource WarningLight}" StrokeShape="RoundRectangle 6" Stroke="Transparent" Padding="8,3" VerticalOptions="Start">
-                                <Label Text="En préparation" FontSize="11" FontAttributes="Bold" TextColor="{StaticResource Warning}" />
+                            <Border Grid.Column="2" BackgroundColor="{StaticResource SuccessLight}" StrokeShape="RoundRectangle 6" Stroke="Transparent" Padding="6,4" HeightRequest="32" VerticalOptions="Start">
+                                <Label Text="En préparation" FontSize="11" FontAttributes="Bold" TextColor="{StaticResource Success}" HorizontalOptions="Center" VerticalOptions="Center" />
                             </Border>
                         </Grid>
 
@@ -124,7 +124,7 @@
                 <!-- Event 3: Veillée Mama Thérèse -->
                 <Border Style="{StaticResource CardFrame}">
                     <Border.GestureRecognizers>
-                        <TapGestureRecognizer Tapped="OnEventTapped" />
+                        <TapGestureRecognizer Tapped="OnVeilleeTapped" />
                     </Border.GestureRecognizers>
                     <VerticalStackLayout Spacing="10">
                         <Grid ColumnDefinitions="Auto,*,Auto">
@@ -135,8 +135,8 @@
                                 <Label Text="Veillée Mama Thérèse" Style="{StaticResource SectionTitle}" />
                                 <Label Text="02 nov. · Bafoussam" Style="{StaticResource CaptionText}" />
                             </VerticalStackLayout>
-                            <Border Grid.Column="2" BackgroundColor="{StaticResource ErrorLight}" StrokeShape="RoundRectangle 6" Stroke="Transparent" Padding="8,3" VerticalOptions="Start">
-                                <Label Text="Bientôt" FontSize="11" FontAttributes="Bold" TextColor="{StaticResource Error}" />
+                            <Border Grid.Column="2" BackgroundColor="{StaticResource SuccessLight}" StrokeShape="RoundRectangle 6" Stroke="Transparent" Padding="6,4" HeightRequest="32" VerticalOptions="Start">
+                                <Label Text="Bientôt" FontSize="11" FontAttributes="Bold" TextColor="{StaticResource Success}" HorizontalOptions="Center" VerticalOptions="Center" />
                             </Border>
                         </Grid>
 

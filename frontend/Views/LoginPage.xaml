@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="FeteCam.Views.LoginPage"
+             Title="Connexion"
+             NavigationPage.HasNavigationBar="False"
+             BackgroundColor="{StaticResource Background}">
+
+    <Grid RowDefinitions="Auto,*">
+        <!-- Top App Bar -->
+        <Border Grid.Row="0" Style="{StaticResource HeaderBar}">
+            <VerticalStackLayout Spacing="8">
+                <HorizontalStackLayout Spacing="4">
+                    <HorizontalStackLayout.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="OnBackTapped" />
+                    </HorizontalStackLayout.GestureRecognizers>
+                    <Label x:Name="BackLabel" Text="‹ Retour" FontSize="14" FontAttributes="Bold" TextColor="{StaticResource Accent}" IsVisible="False" />
+                </HorizontalStackLayout>
+                <VerticalStackLayout Spacing="2">
+                    <Label Text="FêteCam" FontSize="18" FontAttributes="Bold" TextColor="White" />
+                    <Label x:Name="SubtitleLabel" Text="Connectez-vous pour organiser vos événements" FontSize="12" TextColor="#DCE8E2" />
+                </VerticalStackLayout>
+            </VerticalStackLayout>
+        </Border>
+
+        <!-- Content -->
+        <ScrollView Grid.Row="1" Padding="14,16">
+            <VerticalStackLayout Spacing="12">
+                <!-- Mode switch -->
+                <Border Style="{StaticResource CardFrame}" Padding="4">
+                    <Grid ColumnDefinitions="*,*" ColumnSpacing="4">
+                        <Border x:Name="LoginTab" BackgroundColor="{StaticResource Primary}" Stroke="Transparent" StrokeThickness="0" Padding="8,9" StrokeShape="RoundRectangle 8">
+                            <Border.GestureRecognizers>
+                                <TapGestureRecognizer Tapped="OnLoginTabTapped" />
+                            </Border.GestureRecognizers>
+                            <Label x:Name="LoginTabLabel" Text="Se connecter" FontSize="14" FontAttributes="Bold" TextColor="White" HorizontalOptions="Center" />
+                        </Border>
+                        <Border x:Name="RegisterTab" Grid.Column="1" BackgroundColor="Transparent" Stroke="Transparent" StrokeThickness="0" Padding="8,9" StrokeShape="RoundRectangle 8">
+                            <Border.GestureRecognizers>
+                                <TapGestureRecognizer Tapped="OnRegisterTabTapped" />
+                            </Border.GestureRecognizers>
+                            <Label x:Name="RegisterTabLabel" Text="Créer un compte" FontSize="14" FontAttributes="Bold" TextColor="{StaticResource TextSecondary}" HorizontalOptions="Center" />
+                        </Border>
+                    </Grid>
+                </Border>
+
+                <!-- Form -->
+                <Border Style="{StaticResource CardFrame}" Padding="14,14">
+                    <VerticalStackLayout Spacing="10">
+                        <Label x:Name="FormTitleLabel" Text="Heureux de vous revoir" Style="{StaticResource SectionTitle}" />
+
+                        <VerticalStackLayout x:Name="RegisterFields" Spacing="10" IsVisible="False">
+                            <Label Text="Nom complet" Style="{StaticResource CaptionText}" />
+                            <Entry x:Name="NameEntry" Style="{StaticResource StyledEntry}" Placeholder="Ex. Mariam Diallo" AutomationId="NameEntry" />
+                            <Label Text="Téléphone" Style="{StaticResource CaptionText}" />
+                            <Entry x:Name="PhoneEntry" Style="{StaticResource StyledEntry}" Placeholder="+237 6XX XX XX XX" Keyboard="Telephone" AutomationId="PhoneEntry" />
+                            <Label Text="Ville" Style="{StaticResource CaptionText}" />
+                            <Entry x:Name="CityEntry" Style="{StaticResource StyledEntry}" Placeholder="Ex. Douala" AutomationId="CityEntry" />
+                        </VerticalStackLayout>
+
+                        <Label Text="Adresse e-mail" Style="{StaticResource CaptionText}" />
+                        <Entry x:Name="EmailEntry" Style="{StaticResource StyledEntry}" Placeholder="vous@exemple.com" Keyboard="Email" AutomationId="EmailEntry" />
+
+                        <Label Text="Mot de passe" Style="{StaticResource CaptionText}" />
+                        <Entry x:Name="PasswordEntry" Style="{StaticResource StyledEntry}" Placeholder="6 caractères minimum" IsPassword="True" AutomationId="PasswordEntry" />
+
+                        <Label x:Name="ErrorLabel" Text="" FontSize="13" TextColor="{StaticResource Error}" IsVisible="False" AutomationId="ErrorLabel" />
+
+                        <Button x:Name="PrimaryButton" Text="Se connecter" Style="{StaticResource PrimaryButton}" Clicked="OnPrimaryClicked" AutomationId="PrimaryButton" />
+                    </VerticalStackLayout>
+                </Border>
+
+                <!-- Invitation link shortcut -->
+                <Border Style="{StaticResource CardFrame}" Padding="14,12">
+                    <Border.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="OnInviteLinkTapped" />
+                    </Border.GestureRecognizers>
+                    <Grid ColumnDefinitions="*,Auto">
+                        <VerticalStackLayout Spacing="2">
+                            <Label Text="J'ai reçu un lien d'invitation" Style="{StaticResource SectionTitle}" />
+                            <Label Text="Ouvrir l'invitation au comité d'organisation" Style="{StaticResource CaptionText}" />
+                        </VerticalStackLayout>
+                        <Label Grid.Column="1" Text="›" FontSize="20" FontAttributes="Bold" TextColor="{StaticResource TextSecondary}" VerticalOptions="Center" />
+                    </Grid>
+                </Border>
+
+                <!-- Offline mode -->
+                <Border Style="{StaticResource CardFrame}" Padding="14,12">
+                    <Border.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="OnOfflineTapped" />
+                    </Border.GestureRecognizers>
+                    <Grid ColumnDefinitions="*,Auto">
+                        <VerticalStackLayout Spacing="2">
+                            <Label Text="Continuer sans compte" Style="{StaticResource SectionTitle}" />
+                            <Label Text="Mode démo, données locales uniquement" Style="{StaticResource CaptionText}" />
+                        </VerticalStackLayout>
+                        <Label Grid.Column="1" Text="›" FontSize="20" FontAttributes="Bold" TextColor="{StaticResource TextSecondary}" VerticalOptions="Center" />
+                    </Grid>
+                </Border>
+
+                <Label x:Name="ServerLabel" Text="" FontSize="11" TextColor="{StaticResource TextSecondary}" HorizontalOptions="Center" />
+            </VerticalStackLayout>
+        </ScrollView>
+    </Grid>
+</ContentPage>

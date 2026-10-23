@@ -1,3 +1,5 @@
+using FeteCam.Services;
+
 namespace FeteCam.Views;
 
 public partial class FicheEvenementPage : ContentPage
@@ -5,6 +7,16 @@ public partial class FicheEvenementPage : ContentPage
     public FicheEvenementPage()
     {
         InitializeComponent();
+    }
+
+    protected override void OnAppearing()
+    {
+        base.OnAppearing();
+        var evt = EventService.Instance.Current;
+        EventTitleLabel.Text = evt.Name;
+        EventSubtitleLabel.Text = string.IsNullOrWhiteSpace(evt.Date)
+            ? evt.Location
+            : $"{evt.Date} · {evt.Location}";
     }
 
     private async void OnBackTapped(object sender, EventArgs e)

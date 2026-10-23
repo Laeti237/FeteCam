@@ -9,3 +9,11 @@ obj/
 
 # OS-generated files
 .DS_Store
+
+# Local environment / secrets
+appsettings.Development.json
+
+# Local database
+*.db
+*.db-shm
+*.db-wal

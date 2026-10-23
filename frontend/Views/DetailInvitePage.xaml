@@ -17,7 +17,7 @@
                 </HorizontalStackLayout>
                 <VerticalStackLayout Spacing="2">
                     <Label x:Name="HeaderNameLabel" Text="Fiche Invité" FontSize="18" FontAttributes="Bold" TextColor="White" />
-                    <Label Text="Mariage Alain &amp; Rose" FontSize="12" TextColor="#DCE8E2" />
+                    <Label x:Name="SubtitleLabel" Text="Mariage Alain &amp; Rose" FontSize="12" TextColor="#DCE8E2" />
                 </VerticalStackLayout>
             </VerticalStackLayout>
         </Border>
@@ -44,8 +44,8 @@
                     <VerticalStackLayout Spacing="12">
                         <Grid ColumnDefinitions="*,Auto">
                             <Label Text="Statut de confirmation" FontSize="14" TextColor="{StaticResource TextSecondary}" />
-                            <Border Grid.Column="1" BackgroundColor="{StaticResource SuccessLight}" StrokeShape="RoundRectangle 6" Stroke="Transparent" Padding="8,3">
-                                <Label x:Name="StatusLabel" Text="Confirmé" FontSize="11" FontAttributes="Bold" TextColor="{StaticResource Success}" />
+                            <Border Grid.Column="1" BackgroundColor="{StaticResource SuccessLight}" StrokeShape="RoundRectangle 6" Stroke="Transparent" Padding="6,4" WidthRequest="84" HeightRequest="32" HorizontalOptions="Center" VerticalOptions="Center">
+                                <Label x:Name="StatusLabel" Text="Confirmé" FontSize="11" FontAttributes="Bold" TextColor="{StaticResource Success}" HorizontalOptions="Center" VerticalOptions="Center" />
                             </Border>
                         </Grid>
 
@@ -75,7 +75,7 @@
         </ScrollView>
 
         <!-- Bottom Action: Delete Guest -->
-        <Border Grid.Row="2" BackgroundColor="{StaticResource Surface}" Stroke="{StaticResource Border}" StrokeThickness="1,0,0,0" Padding="14,10,14,16">
+        <Border Grid.Row="2" BackgroundColor="{StaticResource Surface}" Stroke="{StaticResource Border}" StrokeThickness="1" Padding="14,10,14,16">
             <Button Text="Retirer de la liste" TextColor="{StaticResource Error}" BackgroundColor="{StaticResource Surface}" BorderColor="{StaticResource Border}" BorderWidth="1" CornerRadius="10" HeightRequest="48" FontAttributes="Bold" Clicked="OnDeleteGuestClicked" />
         </Border>
     </Grid>

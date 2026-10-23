@@ -16,8 +16,8 @@
                     <Label Text="‹ Retour" FontSize="14" FontAttributes="Bold" TextColor="{StaticResource Accent}" />
                 </HorizontalStackLayout>
                 <VerticalStackLayout Spacing="2">
-                    <Label Text="Mariage Alain &amp; Rose" FontSize="18" FontAttributes="Bold" TextColor="White" />
-                    <Label Text="14 décembre · Douala · J-23" FontSize="12" TextColor="#DCE8E2" />
+                    <Label x:Name="EventTitleLabel" Text="Mariage Alain &amp; Rose" FontSize="18" FontAttributes="Bold" TextColor="White" />
+                    <Label x:Name="EventSubtitleLabel" Text="14 décembre · Douala · J-23" FontSize="12" TextColor="#DCE8E2" />
                 </VerticalStackLayout>
             </VerticalStackLayout>
         </Border>
@@ -65,8 +65,8 @@
                             <Label Text="Invités" Style="{StaticResource SectionTitle}" />
                             <Label Text="Liste, confirmations et tables" Style="{StaticResource CaptionText}" />
                         </VerticalStackLayout>
-                        <Border Grid.Column="1" BackgroundColor="{StaticResource SuccessLight}" StrokeShape="RoundRectangle 6" Stroke="Transparent" Padding="8,3" VerticalOptions="Center">
-                            <Label Text="86 / 120" FontSize="11" FontAttributes="Bold" TextColor="{StaticResource Success}" />
+                        <Border Grid.Column="1" BackgroundColor="{StaticResource SuccessLight}" StrokeShape="RoundRectangle 6" Stroke="Transparent" Padding="6,4" WidthRequest="84" HeightRequest="32" VerticalOptions="Center">
+                            <Label Text="86 / 120" FontSize="11" FontAttributes="Bold" TextColor="{StaticResource Success}" HorizontalOptions="Center" VerticalOptions="Center" />
                         </Border>
                     </Grid>
                 </Border>
@@ -81,8 +81,8 @@
                             <Label Text="Contributions" Style="{StaticResource SectionTitle}" />
                             <Label Text="Orange Money, MTN MoMo, Espèces" Style="{StaticResource CaptionText}" />
                         </VerticalStackLayout>
-                        <Border Grid.Column="1" BackgroundColor="{StaticResource WarningLight}" StrokeShape="RoundRectangle 6" Stroke="Transparent" Padding="8,3" VerticalOptions="Center">
-                            <Label Text="1,2 M FCFA" FontSize="11" FontAttributes="Bold" TextColor="{StaticResource Warning}" />
+                        <Border Grid.Column="1" BackgroundColor="{StaticResource SuccessLight}" StrokeShape="RoundRectangle 6" Stroke="Transparent" Padding="6,4" WidthRequest="84" HeightRequest="32" VerticalOptions="Center">
+                            <Label Text="1,2 M FCFA" FontSize="11" FontAttributes="Bold" TextColor="{StaticResource Success}" HorizontalOptions="Center" VerticalOptions="Center" />
                         </Border>
                     </Grid>
                 </Border>
@@ -97,8 +97,8 @@
                             <Label Text="Budget" Style="{StaticResource SectionTitle}" />
                             <Label Text="Dépenses par poste et factures" Style="{StaticResource CaptionText}" />
                         </VerticalStackLayout>
-                        <Border Grid.Column="1" BackgroundColor="{StaticResource WarningLight}" StrokeShape="RoundRectangle 6" Stroke="Transparent" Padding="8,3" VerticalOptions="Center">
-                            <Label Text="68 %" FontSize="11" FontAttributes="Bold" TextColor="{StaticResource Warning}" />
+                        <Border Grid.Column="1" BackgroundColor="{StaticResource SuccessLight}" StrokeShape="RoundRectangle 6" Stroke="Transparent" Padding="6,4" WidthRequest="84" HeightRequest="32" VerticalOptions="Center">
+                            <Label Text="68 %" FontSize="11" FontAttributes="Bold" TextColor="{StaticResource Success}" HorizontalOptions="Center" VerticalOptions="Center" />
                         </Border>
                     </Grid>
                 </Border>
@@ -113,8 +113,8 @@
                             <Label Text="Tâches" Style="{StaticResource SectionTitle}" />
                             <Label Text="Affectations par responsable" Style="{StaticResource CaptionText}" />
                         </VerticalStackLayout>
-                        <Border Grid.Column="1" BackgroundColor="{StaticResource ErrorLight}" StrokeShape="RoundRectangle 6" Stroke="Transparent" Padding="8,3" VerticalOptions="Center">
-                            <Label Text="6 restantes" FontSize="11" FontAttributes="Bold" TextColor="{StaticResource Error}" />
+                        <Border Grid.Column="1" BackgroundColor="{StaticResource SuccessLight}" StrokeShape="RoundRectangle 6" Stroke="Transparent" Padding="6,4" WidthRequest="84" HeightRequest="32" VerticalOptions="Center">
+                            <Label Text="6 restantes" FontSize="11" FontAttributes="Bold" TextColor="{StaticResource Success}" HorizontalOptions="Center" VerticalOptions="Center" />
                         </Border>
                     </Grid>
                 </Border>
@@ -127,10 +127,10 @@
                     <Grid ColumnDefinitions="*,Auto">
                         <VerticalStackLayout Spacing="2">
                             <Label Text="Comité d'organisation" Style="{StaticResource SectionTitle}" />
-                            <Label Text="Membres assignés et coordination" Style="{StaticResource CaptionText}" />
+                            <Label Text="Tous les membres du comité" Style="{StaticResource CaptionText}" />
                         </VerticalStackLayout>
-                        <Border Grid.Column="1" BackgroundColor="{StaticResource SuccessLight}" StrokeShape="RoundRectangle 6" Stroke="Transparent" Padding="8,3" VerticalOptions="Center">
-                            <Label Text="Gérer ›" FontSize="11" FontAttributes="Bold" TextColor="{StaticResource Success}" />
+                        <Border Grid.Column="1" BackgroundColor="{StaticResource SuccessLight}" StrokeShape="RoundRectangle 6" Stroke="Transparent" Padding="6,4" WidthRequest="84" HeightRequest="32" VerticalOptions="Center">
+                            <Label Text="Gérer ›" FontSize="11" FontAttributes="Bold" TextColor="{StaticResource Success}" HorizontalOptions="Center" VerticalOptions="Center" />
                         </Border>
                     </Grid>
                 </Border>

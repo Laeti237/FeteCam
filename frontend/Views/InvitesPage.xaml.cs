@@ -7,28 +7,55 @@ using Microsoft.Maui.Controls.Shapes;
 public partial class InvitesPage : ContentPage
 {
     private GuestService _guestService => GuestService.Instance;
+    private string _searchQuery = string.Empty;
 
     public InvitesPage()
     {
         InitializeComponent();
     }
 
-    protected override void OnAppearing()
+    protected override async void OnAppearing()
     {
         base.OnAppearing();
+        await _guestService.RefreshAsync();
+        LoadGuests();
+    }
+
+    private void OnSearchTextChanged(object sender, TextChangedEventArgs e)
+    {
+        _searchQuery = e.NewTextValue?.Trim() ?? string.Empty;
         LoadGuests();
     }
 
     private void LoadGuests()
     {
         GuestsContainer.Children.Clear();
-        var list = _guestService.Guests;
+
+        var all = _guestService.Guests;
+        ConfirmedCountLabel.Text = all.Count(g => g.Status == "Confirmé").ToString();
+        WaitingCountLabel.Text = all.Count(g => g.Status == "En attente").ToString();
+        AbsentCountLabel.Text = all.Count(g => g.Status == "Absent").ToString();
+
+        int totalPersons = all.Sum(g => g.PersonCount);
+        int eventCount = all.Select(g => g.EventId).Distinct().Count();
+        SubtitleLabel.Text = $"{all.Count} invités · {totalPersons} personnes · {eventCount} événement(s)";
+
+        var filtered = all.AsEnumerable();
+        if (!string.IsNullOrEmpty(_searchQuery))
+        {
+            filtered = filtered.Where(g =>
+                g.Name.Contains(_searchQuery, StringComparison.OrdinalIgnoreCase) ||
+                g.Phone.Contains(_searchQuery, StringComparison.OrdinalIgnoreCase));
+        }
+        var list = filtered.ToList();
 
         if (list.Count == 0)
         {
             var emptyLabel = new Label
             {
-                Text = "Aucun invité assigné pour le moment.",
+                Text = string.IsNullOrEmpty(_searchQuery)
+                    ? "Aucun invité pour le moment."
+                    : "Aucun invité ne correspond à votre recherche.",
                 TextColor = (Color)Application.Current!.Resources["TextSecondary"],
                 FontSize = 13,
                 HorizontalOptions = LayoutOptions.Center,
@@ -38,11 +65,68 @@ public partial class InvitesPage : ContentPage
             return;
         }
 
-        foreach (var item in list)
+        var eventOrder = EventService.Instance.Events.Select((ev, i) => new { ev.Name, Index = i })
+            .ToDictionary(x => x.Name, x => x.Index);
+        int OrderOf(string eventName) => eventOrder.TryGetValue(eventName, out int i) ? i : int.MaxValue;
+
+        var groups = list
+            .GroupBy(g => string.IsNullOrWhiteSpace(g.EventName) ? "Sans événement" : g.EventName)
+            .OrderBy(g => OrderOf(g.Key))
+            .ThenBy(g => g.Key);
+
+        foreach (var group in groups)
         {
-            var card = CreateGuestCard(item);
-            GuestsContainer.Children.Add(card);
+            GuestsContainer.Children.Add(CreateEventHeader(group.Key, group.Count(), group.Sum(g => g.PersonCount)));
+            foreach (var item in group)
+            {
+                var card = CreateGuestCard(item);
+                GuestsContainer.Children.Add(card);
+            }
         }
+    }
+
+    private View CreateEventHeader(string eventName, int guestCount, int personCount)
+    {
+        var border = new Border
+        {
+            BackgroundColor = (Color)Application.Current!.Resources["Primary"],
+            StrokeShape = new RoundRectangle { CornerRadius = new CornerRadius(10) },
+            Stroke = Colors.Transparent,
+            Padding = new Thickness(14, 8),
+            Margin = new Thickness(0, 8, 0, 2)
+        };
+
+        var grid = new Grid
+        {
+            ColumnDefinitions = new ColumnDefinitionCollection
+            {
+                new ColumnDefinition { Width = GridLength.Star },
+                new ColumnDefinition { Width = GridLength.Auto }
+            }
+        };
+
+        grid.Children.Add(new Label
+        {
+            Text = eventName,
+            FontSize = 14,
+            FontAttributes = FontAttributes.Bold,
+            TextColor = Colors.White,
+            VerticalOptions = LayoutOptions.Center
+        });
+
+        var countLabel = new Label
+        {
+            Text = $"{guestCount} invité(s) · {personCount} pers.",
+            FontSize = 11,
+            TextColor = Color.FromArgb("#DCE8E2"),
+            HorizontalOptions = LayoutOptions.End,
+            VerticalOptions = LayoutOptions.Center
+        };
+        Grid.SetColumn(countLabel, 1);
+        grid.Children.Add(countLabel);
+
+        border.Content = grid;
+        return border;
     }
 
     private Border CreateGuestCard(GuestItem item)
@@ -104,7 +188,7 @@ public partial class InvitesPage : ContentPage
         string subtitle = item.Phone;
         if (!string.IsNullOrWhiteSpace(item.Phone))
         {
-            subtitle += $" · {item.Phone}";
+            subtitle += $" · {item.PersonCount} personne(s)";
         }
 
         var subLabel = new Label
@@ -121,11 +205,11 @@ public partial class InvitesPage : ContentPage
         var tapGesture = new TapGestureRecognizer();
         tapGesture.Tapped += (s, e) =>
         {
-            Navigation.PushAsync(new DetailInvitePage(item.Name, item.Phone, item.Status, $" {item.PersonCount} personnes", item.Status == "Confirmé" ? "Table d'honneur" : "Non assignée"));
+            Navigation.PushAsync(new DetailInvitePage(item.Name, item.Phone, item.Status, $" {item.PersonCount} personnes", item.Status == "Confirmé" ? "Table d'honneur" : "Non assignée", string.IsNullOrWhiteSpace(item.EventName) ? "Mariage Alain & Rose" : item.EventName));
         };
         grid.GestureRecognizers.Add(tapGesture);
 
-        // Delete button
+        // Delete button — same tile size as status badge, red
         var deleteBtn = new Button
         {
             Text = "Supprimer",
@@ -133,10 +217,12 @@ public partial class InvitesPage : ContentPage
             FontAttributes = FontAttributes.Bold,
             TextColor = (Color)Application.Current!.Resources["Error"],
             BackgroundColor = (Color)Application.Current!.Resources["ErrorLight"],
+            WidthRequest = 84,
             HeightRequest = 32,
-            Padding = new Thickness(10, 0),
+            Padding = new Thickness(6, 4),
             CornerRadius = 6,
-            VerticalOptions = LayoutOptions.Center
+            VerticalOptions = LayoutOptions.Center,
+            HorizontalOptions = LayoutOptions.Center
         };
         deleteBtn.Clicked += async (s, e) =>
         {
@@ -148,7 +234,7 @@ public partial class InvitesPage : ContentPage
 
             if (confirm)
             {
-                _guestService.Remove(item.Id);
+                await _guestService.RemoveAsync(item.Id);
                 LoadGuests();
             }
         };
@@ -156,15 +242,17 @@ public partial class InvitesPage : ContentPage
         grid.Children.Add(deleteBtn);
         Grid.SetColumn(deleteBtn, 3);
 
-        // Status badge
+        // Status badge — same tile size as delete button, single color for all statuses
         var statusBorder = new Border
         {
-            BackgroundColor = (Color)Application.Current!.Resources[item.StatusColor],
-            StrokeShape = new RoundRectangle { CornerRadius = 6 },
+            BackgroundColor = Color.FromArgb(item.StatusColor),
+            StrokeShape = new RoundRectangle { CornerRadius = new CornerRadius(6) },
             Stroke = Colors.Transparent,
-            Padding = new Thickness(6, 3),
+            Padding = new Thickness(6, 4),
             VerticalOptions = LayoutOptions.Center,
-            HeightRequest = 24
+            HorizontalOptions = LayoutOptions.Center,
+            WidthRequest = 84,
+            HeightRequest = 32
         };
         Grid.SetColumn(statusBorder, 2);
         var statusLabel = new Label
@@ -172,7 +260,9 @@ public partial class InvitesPage : ContentPage
             Text = item.Status,
             FontSize = 11,
             FontAttributes = FontAttributes.Bold,
-            TextColor = (Color)Application.Current!.Resources[item.StatusTextColor ?? "TextPrimary"]
+            TextColor = Color.FromArgb(item.StatusTextColor),
+            HorizontalOptions = LayoutOptions.Center,
+            VerticalOptions = LayoutOptions.Center
         };
         statusBorder.Content = statusLabel;
 

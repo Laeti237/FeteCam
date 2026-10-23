@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="FeteCam.Views.MonComptePage"
+             Title="Mon compte"
+             BackgroundColor="{StaticResource Background}">
+
+    <Grid RowDefinitions="Auto,*,Auto">
+        <!-- Top App Bar -->
+        <Border Grid.Row="0" Style="{StaticResource HeaderBar}">
+            <VerticalStackLayout Spacing="8">
+                <HorizontalStackLayout Spacing="4">
+                    <HorizontalStackLayout.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="OnBackTapped" />
+                    </HorizontalStackLayout.GestureRecognizers>
+                    <Label Text="‹ Retour" FontSize="14" FontAttributes="Bold" TextColor="{StaticResource Accent}" />
+                </HorizontalStackLayout>
+                <VerticalStackLayout Spacing="2">
+                    <Label Text="Mon compte" FontSize="18" FontAttributes="Bold" TextColor="White" />
+                    <Label Text="Modifier vos informations personnelles" FontSize="12" TextColor="#DCE8E2" />
+                </VerticalStackLayout>
+            </VerticalStackLayout>
+        </Border>
+
+        <!-- Form ScrollView -->
+        <ScrollView Grid.Row="1" Padding="14,14">
+            <VerticalStackLayout Spacing="14">
+                <!-- Avatar Card -->
+                <Border Style="{StaticResource CardFrame}">
+                    <Grid ColumnDefinitions="Auto,*">
+                        <Border x:Name="AvatarBorder" WidthRequest="50" HeightRequest="50" StrokeShape="RoundRectangle 25" BackgroundColor="{StaticResource Primary}" Stroke="Transparent" VerticalOptions="Center">
+                            <Label x:Name="InitialsLabel" Text="LN" FontSize="16" FontAttributes="Bold" TextColor="White" HorizontalOptions="Center" VerticalOptions="Center" />
+                        </Border>
+                        <VerticalStackLayout Grid.Column="1" Spacing="2" Margin="14,0,0,0" VerticalOptions="Center">
+                            <Label x:Name="PreviewNameLabel" Text="Laeticia Ngono" FontSize="16" FontAttributes="Bold" TextColor="{StaticResource TextPrimary}" />
+                            <Label x:Name="PreviewMetaLabel" Text="+237 671 22 33 44 · Douala" Style="{StaticResource CaptionText}" />
+                        </VerticalStackLayout>
+                    </Grid>
+                </Border>
+
+                <!-- Inputs Card -->
+                <Border Style="{StaticResource CardFrame}">
+                    <VerticalStackLayout Spacing="12">
+                        <VerticalStackLayout Spacing="4">
+                            <Label Text="Nom complet" Style="{StaticResource CaptionText}" FontAttributes="Bold" TextColor="{StaticResource TextPrimary}" />
+                            <Border StrokeShape="RoundRectangle 8" Stroke="{StaticResource Border}" Padding="10,0" BackgroundColor="{StaticResource Surface}">
+                                <Entry x:Name="NameEntry" Placeholder="Votre nom et prénom" Style="{StaticResource StyledEntry}" TextChanged="OnFieldChanged" />
+                            </Border>
+                        </VerticalStackLayout>
+
+                        <VerticalStackLayout Spacing="4">
+                            <Label Text="Téléphone" Style="{StaticResource CaptionText}" FontAttributes="Bold" TextColor="{StaticResource TextPrimary}" />
+                            <Border StrokeShape="RoundRectangle 8" Stroke="{StaticResource Border}" Padding="10,0" BackgroundColor="{StaticResource Surface}">
+                                <Entry x:Name="PhoneEntry" Placeholder="+237 6XX XX XX XX" Keyboard="Telephone" Style="{StaticResource StyledEntry}" TextChanged="OnFieldChanged" />
+                            </Border>
+                        </VerticalStackLayout>
+
+                        <VerticalStackLayout Spacing="4">
+                            <Label Text="Ville" Style="{StaticResource CaptionText}" FontAttributes="Bold" TextColor="{StaticResource TextPrimary}" />
+                            <Border StrokeShape="RoundRectangle 8" Stroke="{StaticResource Border}" Padding="10,0" BackgroundColor="{StaticResource Surface}">
+                                <Entry x:Name="CityEntry" Placeholder="Ex. Douala" Style="{StaticResource StyledEntry}" TextChanged="OnFieldChanged" />
+                            </Border>
+                        </VerticalStackLayout>
+
+                        <VerticalStackLayout Spacing="4">
+                            <Label Text="Adresse e-mail" Style="{StaticResource CaptionText}" FontAttributes="Bold" TextColor="{StaticResource TextPrimary}" />
+                            <Border StrokeShape="RoundRectangle 8" Stroke="{StaticResource Border}" Padding="10,0" BackgroundColor="{StaticResource Surface}">
+                                <Entry x:Name="EmailEntry" Placeholder="exemple@mail.com" Keyboard="Email" Style="{StaticResource StyledEntry}" TextChanged="OnFieldChanged" />
+                            </Border>
+                        </VerticalStackLayout>
+                    </VerticalStackLayout>
+                </Border>
+
+                <!-- Security Card -->
+                <Border Style="{StaticResource CardFrame}">
+                    <Grid ColumnDefinitions="*,Auto">
+                        <VerticalStackLayout Spacing="2">
+                            <Label Text="Mot de passe" Style="{StaticResource SectionTitle}" />
+                            <Label Text="Dernière modification il y a 3 mois" Style="{StaticResource CaptionText}" />
+                        </VerticalStackLayout>
+                        <Label Grid.Column="1" Text="Modifier ›" FontSize="12" FontAttributes="Bold" TextColor="{StaticResource Primary}" VerticalOptions="Center" />
+                    </Grid>
+                </Border>
+            </VerticalStackLayout>
+        </ScrollView>
+
+        <!-- Bottom Action Button -->
+        <Border Grid.Row="2" BackgroundColor="{StaticResource Surface}" Stroke="{StaticResource Border}" StrokeThickness="1" Padding="14,10,14,16">
+            <Button Text="Enregistrer les modifications" Style="{StaticResource PrimaryButton}" Clicked="OnSaveClicked" />
+        </Border>
+    </Grid>
+</ContentPage>

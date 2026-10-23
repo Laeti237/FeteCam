@@ -7,5 +7,6 @@ public class ResponsibleItem
     public string Role { get; set; } = "Membre du comité";
     public string Phone { get; set; } = string.Empty;
     public int TaskCount { get; set; } = 0;
+    public int? ServerMembershipId { get; set; }
     public string Initials => string.IsNullOrWhiteSpace(Name) ? "?" : (Name.Length <= 2 ? Name.ToUpper() : Name.Substring(0, 2).ToUpper());
 }

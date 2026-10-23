@@ -17,7 +17,7 @@
                 </HorizontalStackLayout>
                 <VerticalStackLayout Spacing="2">
                     <Label Text="Tâches" FontSize="18" FontAttributes="Bold" TextColor="White" />
-                    <Label Text="Mariage Alain &amp; Rose · Par responsable" FontSize="12" TextColor="#DCE8E2" />
+                    <Label x:Name="SubtitleLabel" Text="Tous les événements · Par responsable" FontSize="12" TextColor="#DCE8E2" />
                 </VerticalStackLayout>
             </VerticalStackLayout>
         </Border>
@@ -38,60 +38,8 @@
                 <!-- Responsibles dynamic filter -->
                 <FlexLayout x:Name="ResponsiblesFilterLayout" Wrap="Wrap" JustifyContent="Start" />
 
-                <!-- Tasks Section Header -->
-                <Label Text="Liste des tâches" Style="{StaticResource SectionTitle}" Margin="2,6,0,0" />
-
-                <!-- Task 1: Urgente / A faire -->
-                <Border x:Name="TaskCard1" Style="{StaticResource CardFrame}">
-                    <Grid ColumnDefinitions="*,Auto">
-                        <VerticalStackLayout Spacing="2">
-                            <Label Text="Réserver la salle" Style="{StaticResource SectionTitle}" />
-                            <Label Text="Avant le 20 nov. · Djon" Style="{StaticResource CaptionText}" />
-                        </VerticalStackLayout>
-                        <Border Grid.Column="1" BackgroundColor="{StaticResource ErrorLight}" StrokeShape="RoundRectangle 6" Stroke="Transparent" Padding="8,3" VerticalOptions="Center">
-                            <Label Text="À faire" FontSize="11" FontAttributes="Bold" TextColor="{StaticResource Error}" />
-                        </Border>
-                    </Grid>
-                </Border>
-
-                <!-- Task 2: En cours -->
-                <Border x:Name="TaskCard2" Style="{StaticResource CardFrame}">
-                    <Grid ColumnDefinitions="*,Auto">
-                        <VerticalStackLayout Spacing="2">
-                            <Label Text="Commander les boissons" Style="{StaticResource SectionTitle}" />
-                            <Label Text="Avant le 01 déc. · Djon" Style="{StaticResource CaptionText}" />
-                        </VerticalStackLayout>
-                        <Border Grid.Column="1" BackgroundColor="{StaticResource WarningLight}" StrokeShape="RoundRectangle 6" Stroke="Transparent" Padding="8,3" VerticalOptions="Center">
-                            <Label Text="En cours" FontSize="11" FontAttributes="Bold" TextColor="{StaticResource Warning}" />
-                        </Border>
-                    </Grid>
-                </Border>
-
-                <!-- Task 3: Terminé -->
-                <Border x:Name="TaskCard3" Style="{StaticResource CardFrame}">
-                    <Grid ColumnDefinitions="*,Auto">
-                        <VerticalStackLayout Spacing="2">
-                            <Label Text="Envoyer les invitations" Style="{StaticResource SectionTitle}" TextColor="{StaticResource TextSecondary}" />
-                            <Label Text="Fait le 02 nov. · Laeticia" Style="{StaticResource CaptionText}" />
-                        </VerticalStackLayout>
-                        <Border Grid.Column="1" BackgroundColor="{StaticResource SuccessLight}" StrokeShape="RoundRectangle 6" Stroke="Transparent" Padding="8,3" VerticalOptions="Center">
-                            <Label Text="Terminé" FontSize="11" FontAttributes="Bold" TextColor="{StaticResource Success}" />
-                        </Border>
-                    </Grid>
-                </Border>
-
-                <!-- Task 4: Terminé -->
-                <Border x:Name="TaskCard4" Style="{StaticResource CardFrame}">
-                    <Grid ColumnDefinitions="*,Auto">
-                        <VerticalStackLayout Spacing="2">
-                            <Label Text="Choisir le traiteur" Style="{StaticResource SectionTitle}" TextColor="{StaticResource TextSecondary}" />
-                            <Label Text="Fait le 28 oct. · Patricia" Style="{StaticResource CaptionText}" />
-                        </VerticalStackLayout>
-                        <Border Grid.Column="1" BackgroundColor="{StaticResource SuccessLight}" StrokeShape="RoundRectangle 6" Stroke="Transparent" Padding="8,3" VerticalOptions="Center">
-                            <Label Text="Terminé" FontSize="11" FontAttributes="Bold" TextColor="{StaticResource Success}" />
-                        </Border>
-                    </Grid>
-                </Border>
+                <!-- Tasks grouped by event -->
+                <VerticalStackLayout x:Name="TasksContainer" Spacing="12" />
 
                 <!-- Add Task Button -->
                 <Button Text="+ Nouvelle tâche" Style="{StaticResource PrimaryButton}" Clicked="OnAddTaskClicked" Margin="0,4,0,8" />

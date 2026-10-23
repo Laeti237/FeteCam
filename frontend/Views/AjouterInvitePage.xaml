@@ -17,7 +17,7 @@
                 </HorizontalStackLayout>
                 <VerticalStackLayout Spacing="2">
                     <Label Text="Ajouter un invité" FontSize="18" FontAttributes="Bold" TextColor="White" />
-                    <Label Text="Mariage Alain &amp; Rose" FontSize="12" TextColor="#DCE8E2" />
+                    <Label x:Name="SubtitleLabel" Text="Sélectionnez un événement" FontSize="12" TextColor="#DCE8E2" />
                 </VerticalStackLayout>
             </VerticalStackLayout>
         </Border>
@@ -25,20 +25,16 @@
         <!-- Form ScrollView -->
         <ScrollView Grid.Row="1" Padding="14,14">
             <VerticalStackLayout Spacing="14">
+                <!-- Événement -->
+                <VerticalStackLayout Spacing="6">
+                    <Label Text="Événement" Style="{StaticResource SectionTitle}" />
+                    <FlexLayout x:Name="EventChips" Wrap="Wrap" JustifyContent="Start" />
+                </VerticalStackLayout>
+
                 <!-- Statut de confirmation -->
                 <VerticalStackLayout Spacing="6">
                     <Label Text="Statut de confirmation" Style="{StaticResource SectionTitle}" />
-                    <FlexLayout Wrap="Wrap" JustifyContent="Start">
-                        <Border BackgroundColor="{StaticResource Primary}" StrokeShape="RoundRectangle 20" Stroke="Transparent" Padding="16,8" Margin="0,0,8,6">
-                            <Label Text="Confirmé" FontSize="13" FontAttributes="Bold" TextColor="White" />
-                        </Border>
-                        <Border BackgroundColor="{StaticResource Surface}" StrokeShape="RoundRectangle 20" Stroke="{StaticResource Border}" Padding="16,8" Margin="0,0,8,6">
-                            <Label Text="En attente" FontSize="13" FontAttributes="Bold" TextColor="{StaticResource TextPrimary}" />
-                        </Border>
-                        <Border BackgroundColor="{StaticResource Surface}" StrokeShape="RoundRectangle 20" Stroke="{StaticResource Border}" Padding="16,8" Margin="0,0,8,6">
-                            <Label Text="Absent" FontSize="13" FontAttributes="Bold" TextColor="{StaticResource TextPrimary}" />
-                        </Border>
-                    </FlexLayout>
+                    <FlexLayout x:Name="StatusChips" Wrap="Wrap" JustifyContent="Start" />
                 </VerticalStackLayout>
 
                 <!-- Inputs Card -->
@@ -47,21 +43,21 @@
                         <VerticalStackLayout Spacing="4">
                             <Label Text="Nom complet" Style="{StaticResource CaptionText}" FontAttributes="Bold" TextColor="{StaticResource TextPrimary}" />
                             <Border StrokeShape="RoundRectangle 8" Stroke="{StaticResource Border}" Padding="10,0" BackgroundColor="{StaticResource Surface}">
-                                <Entry Placeholder="Nom et prénom de l'invité" Style="{StaticResource StyledEntry}" />
+                                <Entry x:Name="NameEntry" Placeholder="Nom et prénom de l'invité" Style="{StaticResource StyledEntry}" />
                             </Border>
                         </VerticalStackLayout>
 
                         <VerticalStackLayout Spacing="4">
                             <Label Text="Téléphone" Style="{StaticResource CaptionText}" FontAttributes="Bold" TextColor="{StaticResource TextPrimary}" />
                             <Border StrokeShape="RoundRectangle 8" Stroke="{StaticResource Border}" Padding="10,0" BackgroundColor="{StaticResource Surface}">
-                                <Entry Placeholder="+237 6XX XX XX XX" Keyboard="Telephone" Style="{StaticResource StyledEntry}" />
+                                <Entry x:Name="PhoneEntry" Placeholder="+237 6XX XX XX XX" Keyboard="Telephone" Style="{StaticResource StyledEntry}" />
                             </Border>
                         </VerticalStackLayout>
 
                         <VerticalStackLayout Spacing="4">
                             <Label Text="Nombre de personnes" Style="{StaticResource CaptionText}" FontAttributes="Bold" TextColor="{StaticResource TextPrimary}" />
                             <Border StrokeShape="RoundRectangle 8" Stroke="{StaticResource Border}" Padding="10,0" BackgroundColor="{StaticResource Surface}">
-                                <Entry Placeholder="1" Text="1" Keyboard="Numeric" Style="{StaticResource StyledEntry}" />
+                                <Entry x:Name="CountEntry" Placeholder="1" Text="1" Keyboard="Numeric" Style="{StaticResource StyledEntry}" />
                             </Border>
                         </VerticalStackLayout>
 
@@ -77,7 +73,7 @@
         </ScrollView>
 
         <!-- Bottom Action Button -->
-        <Border Grid.Row="2" BackgroundColor="{StaticResource Surface}" Stroke="{StaticResource Border}" StrokeThickness="1,0,0,0" Padding="14,10,14,16">
+        <Border Grid.Row="2" BackgroundColor="{StaticResource Surface}" Stroke="{StaticResource Border}" StrokeThickness="1" Padding="14,10,14,16">
             <Button Text="Enregistrer l'invité" Style="{StaticResource PrimaryButton}" Clicked="OnSaveClicked" />
         </Border>
     </Grid>

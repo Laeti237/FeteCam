@@ -13,10 +13,12 @@ public partial class TachesPage : ContentPage
         InitializeComponent();
     }
 
-    protected override void OnAppearing()
+    protected override async void OnAppearing()
     {
         base.OnAppearing();
+        await TaskService.Instance.RefreshAsync();
         RefreshResponsiblesPills();
+        LoadTasks();
     }
 
     private void RefreshResponsiblesPills()
@@ -89,21 +91,160 @@ public partial class TachesPage : ContentPage
         {
             _selectedResponsible = name;
             RefreshResponsiblesPills();
-            FilterTasks();
+            LoadTasks();
         };
         pill.GestureRecognizers.Add(tap);
 
         return pill;
     }
 
-    private void FilterTasks()
+    private void LoadTasks()
     {
-        bool showAll = _selectedResponsible == "Toutes";
+        TasksContainer.Children.Clear();
 
-        TaskCard1.IsVisible = showAll || _selectedResponsible == "Djon";
-        TaskCard2.IsVisible = showAll || _selectedResponsible == "Djon";
-        TaskCard3.IsVisible = showAll || _selectedResponsible == "Laeticia";
-        TaskCard4.IsVisible = showAll || _selectedResponsible == "Patricia";
+        bool showAll = _selectedResponsible == "Toutes";
+        var filtered = TaskService.Instance.Tasks
+            .Where(t => showAll || t.Responsible == _selectedResponsible)
+            .ToList();
+
+        SubtitleLabel.Text = $"{filtered.Count} tâche(s) · {filtered.Select(t => t.EventId).Distinct().Count()} événement(s) · {_selectedResponsible}";
+
+        if (filtered.Count == 0)
+        {
+            TasksContainer.Children.Add(new Label
+            {
+                Text = showAll
+                    ? "Aucune tâche pour le moment."
+                    : $"Aucune tâche pour {_selectedResponsible}.",
+                TextColor = (Color)Application.Current!.Resources["TextSecondary"],
+                FontSize = 13,
+                HorizontalOptions = LayoutOptions.Center,
+                Margin = new Thickness(0, 30, 0, 0)
+            });
+            return;
+        }
+
+        var eventOrder = EventService.Instance.Events.Select((ev, i) => new { ev.Name, Index = i })
+            .ToDictionary(x => x.Name, x => x.Index);
+        int OrderOf(string eventName) => eventOrder.TryGetValue(eventName, out int i) ? i : int.MaxValue;
+
+        var groups = filtered
+            .GroupBy(t => string.IsNullOrWhiteSpace(t.EventName) ? "Sans événement" : t.EventName)
+            .OrderBy(g => OrderOf(g.Key))
+            .ThenBy(g => g.Key);
+
+        foreach (var group in groups)
+        {
+            TasksContainer.Children.Add(CreateEventHeader(group.Key, group.Count()));
+            foreach (var task in group)
+            {
+                TasksContainer.Children.Add(CreateTaskCard(task));
+            }
+        }
+    }
+
+    private View CreateEventHeader(string eventName, int taskCount)
+    {
+        var border = new Border
+        {
+            BackgroundColor = (Color)Application.Current!.Resources["Primary"],
+            StrokeShape = new RoundRectangle { CornerRadius = new CornerRadius(10) },
+            Stroke = Colors.Transparent,
+            Padding = new Thickness(14, 8),
+            Margin = new Thickness(0, 8, 0, 2)
+        };
+
+        var grid = new Grid
+        {
+            ColumnDefinitions = new ColumnDefinitionCollection
+            {
+                new ColumnDefinition { Width = GridLength.Star },
+                new ColumnDefinition { Width = GridLength.Auto }
+            }
+        };
+
+        grid.Children.Add(new Label
+        {
+            Text = eventName,
+            FontSize = 14,
+            FontAttributes = FontAttributes.Bold,
+            TextColor = Colors.White,
+            VerticalOptions = LayoutOptions.Center
+        });
+
+        var countLabel = new Label
+        {
+            Text = $"{taskCount} tâche(s)",
+            FontSize = 11,
+            TextColor = Color.FromArgb("#DCE8E2"),
+            HorizontalOptions = LayoutOptions.End,
+            VerticalOptions = LayoutOptions.Center
+        };
+        Grid.SetColumn(countLabel, 1);
+        grid.Children.Add(countLabel);
+
+        border.Content = grid;
+        return border;
+    }
+
+    private Border CreateTaskCard(TaskItem item)
+    {
+        var border = new Border
+        {
+            Style = (Style)Application.Current!.Resources["CardFrame"],
+            Margin = new Thickness(0, 0, 0, 4)
+        };
+
+        var grid = new Grid
+        {
+            ColumnDefinitions = new ColumnDefinitionCollection
+            {
+                new ColumnDefinition { Width = GridLength.Star },
+                new ColumnDefinition { Width = GridLength.Auto }
+            }
+        };
+
+        var infoStack = new VerticalStackLayout { Spacing = 2 };
+        infoStack.Children.Add(new Label
+        {
+            Text = item.Title,
+            Style = (Style)Application.Current!.Resources["SectionTitle"],
+            TextColor = item.IsDone
+                ? (Color)Application.Current!.Resources["TextSecondary"]
+                : (Color)Application.Current!.Resources["TextPrimary"]
+        });
+        infoStack.Children.Add(new Label
+        {
+            Text = $"{item.DueDate} · {item.Responsible}",
+            Style = (Style)Application.Current!.Resources["CaptionText"]
+        });
+        grid.Children.Add(infoStack);
+
+        var badge = new Border
+        {
+            BackgroundColor = Color.FromArgb(item.StatusColor),
+            StrokeShape = new RoundRectangle { CornerRadius = new CornerRadius(6) },
+            Stroke = Colors.Transparent,
+            Padding = new Thickness(6, 4),
+            WidthRequest = 84,
+            HeightRequest = 32,
+            VerticalOptions = LayoutOptions.Center,
+            HorizontalOptions = LayoutOptions.Center
+        };
+        badge.Content = new Label
+        {
+            Text = item.Status,
+            FontSize = 11,
+            FontAttributes = FontAttributes.Bold,
+            TextColor = Color.FromArgb(item.StatusTextColor),
+            HorizontalOptions = LayoutOptions.Center,
+            VerticalOptions = LayoutOptions.Center
+        };
+        Grid.SetColumn(badge, 1);
+        grid.Children.Add(badge);
+
+        border.Content = grid;
+        return border;
     }
 
     private async void OnManageResponsiblesClicked(object? sender, EventArgs e)

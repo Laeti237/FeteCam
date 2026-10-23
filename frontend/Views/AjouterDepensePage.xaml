@@ -17,7 +17,7 @@
                 </HorizontalStackLayout>
                 <VerticalStackLayout Spacing="2">
                     <Label Text="Ajouter une dépense" FontSize="18" FontAttributes="Bold" TextColor="White" />
-                    <Label Text="Mariage Alain &amp; Rose" FontSize="12" TextColor="#DCE8E2" />
+                    <Label x:Name="SubtitleLabel" Text="Sélectionnez un événement" FontSize="12" TextColor="#DCE8E2" />
                 </VerticalStackLayout>
             </VerticalStackLayout>
         </Border>
@@ -25,26 +25,16 @@
         <!-- Form ScrollView -->
         <ScrollView Grid.Row="1" Padding="14,14">
             <VerticalStackLayout Spacing="14">
+                <!-- Événement -->
+                <VerticalStackLayout Spacing="6">
+                    <Label Text="Événement" Style="{StaticResource SectionTitle}" />
+                    <FlexLayout x:Name="EventChips" Wrap="Wrap" JustifyContent="Start" />
+                </VerticalStackLayout>
+
                 <!-- Poste de dépense -->
                 <VerticalStackLayout Spacing="6">
                     <Label Text="Poste" Style="{StaticResource SectionTitle}" />
-                    <FlexLayout Wrap="Wrap" JustifyContent="Start">
-                        <Border BackgroundColor="{StaticResource Primary}" StrokeShape="RoundRectangle 20" Stroke="Transparent" Padding="16,8" Margin="0,0,8,6">
-                            <Label Text="Traiteur" FontSize="13" FontAttributes="Bold" TextColor="White" />
-                        </Border>
-                        <Border BackgroundColor="{StaticResource Surface}" StrokeShape="RoundRectangle 20" Stroke="{StaticResource Border}" Padding="16,8" Margin="0,0,8,6">
-                            <Label Text="Salle" FontSize="13" FontAttributes="Bold" TextColor="{StaticResource TextPrimary}" />
-                        </Border>
-                        <Border BackgroundColor="{StaticResource Surface}" StrokeShape="RoundRectangle 20" Stroke="{StaticResource Border}" Padding="16,8" Margin="0,0,8,6">
-                            <Label Text="Boissons" FontSize="13" FontAttributes="Bold" TextColor="{StaticResource TextPrimary}" />
-                        </Border>
-                        <Border BackgroundColor="{StaticResource Surface}" StrokeShape="RoundRectangle 20" Stroke="{StaticResource Border}" Padding="16,8" Margin="0,0,8,6">
-                            <Label Text="Décoration" FontSize="13" FontAttributes="Bold" TextColor="{StaticResource TextPrimary}" />
-                        </Border>
-                        <Border BackgroundColor="{StaticResource Surface}" StrokeShape="RoundRectangle 20" Stroke="{StaticResource Border}" Padding="16,8" Margin="0,0,8,6">
-                            <Label Text="Musique" FontSize="13" FontAttributes="Bold" TextColor="{StaticResource TextPrimary}" />
-                        </Border>
-                    </FlexLayout>
+                    <FlexLayout x:Name="PosteChips" Wrap="Wrap" JustifyContent="Start" />
                 </VerticalStackLayout>
 
                 <!-- Inputs Card -->
@@ -53,28 +43,28 @@
                         <VerticalStackLayout Spacing="4">
                             <Label Text="Montant dépensé (FCFA)" Style="{StaticResource CaptionText}" FontAttributes="Bold" TextColor="{StaticResource TextPrimary}" />
                             <Border StrokeShape="RoundRectangle 8" Stroke="{StaticResource Border}" Padding="10,0" BackgroundColor="{StaticResource Surface}">
-                                <Entry Placeholder="Montant en FCFA" Keyboard="Numeric" Style="{StaticResource StyledEntry}" />
+                                <Entry x:Name="AmountEntry" Placeholder="Montant en FCFA" Keyboard="Numeric" Style="{StaticResource StyledEntry}" />
                             </Border>
                         </VerticalStackLayout>
 
                         <VerticalStackLayout Spacing="4">
                             <Label Text="Fournisseur ou prestataire" Style="{StaticResource CaptionText}" FontAttributes="Bold" TextColor="{StaticResource TextPrimary}" />
                             <Border StrokeShape="RoundRectangle 8" Stroke="{StaticResource Border}" Padding="10,0" BackgroundColor="{StaticResource Surface}">
-                                <Entry Placeholder="Nom de l'entreprise ou contact" Style="{StaticResource StyledEntry}" />
+                                <Entry x:Name="SupplierEntry" Placeholder="Nom de l'entreprise ou contact" Style="{StaticResource StyledEntry}" />
                             </Border>
                         </VerticalStackLayout>
 
                         <VerticalStackLayout Spacing="4">
                             <Label Text="Mode de règlement" Style="{StaticResource CaptionText}" FontAttributes="Bold" TextColor="{StaticResource TextPrimary}" />
                             <Border StrokeShape="RoundRectangle 8" Stroke="{StaticResource Border}" Padding="10,0" BackgroundColor="{StaticResource Surface}">
-                                <Entry Placeholder="Espèces, Orange Money, MTN MoMo, Virement" Text="Orange Money" Style="{StaticResource StyledEntry}" />
+                                <Entry x:Name="PaymentModeEntry" Placeholder="Espèces, Orange Money, MTN MoMo, Virement" Text="Orange Money" Style="{StaticResource StyledEntry}" />
                             </Border>
                         </VerticalStackLayout>
 
                         <VerticalStackLayout Spacing="4">
                             <Label Text="Note ou référence de reçu" Style="{StaticResource CaptionText}" FontAttributes="Bold" TextColor="{StaticResource TextPrimary}" />
                             <Border StrokeShape="RoundRectangle 8" Stroke="{StaticResource Border}" Padding="10,0" BackgroundColor="{StaticResource Surface}">
-                                <Entry Placeholder="Ex. Acompte, Facture N°" Style="{StaticResource StyledEntry}" />
+                                <Entry x:Name="NoteEntry" Placeholder="Ex. Acompte, Facture N°" Style="{StaticResource StyledEntry}" />
                             </Border>
                         </VerticalStackLayout>
                     </VerticalStackLayout>
@@ -83,7 +73,7 @@
         </ScrollView>
 
         <!-- Bottom Action Button -->
-        <Border Grid.Row="2" BackgroundColor="{StaticResource Surface}" Stroke="{StaticResource Border}" StrokeThickness="1,0,0,0" Padding="14,10,14,16">
+        <Border Grid.Row="2" BackgroundColor="{StaticResource Surface}" Stroke="{StaticResource Border}" StrokeThickness="1" Padding="14,10,14,16">
             <Button Text="Ajouter la dépense" Style="{StaticResource PrimaryButton}" Clicked="OnSaveClicked" />
         </Border>
     </Grid>

@@ -18,9 +18,9 @@
                 <Grid ColumnDefinitions="*,Auto">
                     <VerticalStackLayout Spacing="2">
                         <Label Text="Comité d'organisation" FontSize="18" FontAttributes="Bold" TextColor="White" />
-                        <Label x:Name="SubtitleLabel" Text="Mariage Alain &amp; Rose · Responsables" FontSize="12" TextColor="#DCE8E2" />
+                        <Label x:Name="SubtitleLabel" Text="Tous les événements · Responsables" FontSize="12" TextColor="#DCE8E2" />
                     </VerticalStackLayout>
-                    <Button Grid.Column="1" Text="+ Ajouter" FontSize="12" FontAttributes="Bold" BackgroundColor="{StaticResource Accent}" TextColor="{StaticResource TextPrimary}" HeightRequest="36" Padding="12,0" CornerRadius="8" Clicked="OnAddResponsibleClicked" VerticalOptions="Center" />
+                    <Button Grid.Column="1" Text="+ Inviter" FontSize="12" FontAttributes="Bold" BackgroundColor="{StaticResource Accent}" TextColor="{StaticResource TextPrimary}" HeightRequest="36" Padding="12,0" CornerRadius="8" Clicked="OnAddResponsibleClicked" AutomationId="AddTopButton" VerticalOptions="Center" />
                 </Grid>
             </VerticalStackLayout>
         </Border>
@@ -28,16 +28,19 @@
         <!-- Main Content: List of Responsibles -->
         <ScrollView Grid.Row="1" Padding="14,14">
             <VerticalStackLayout Spacing="12">
-                <Label Text="Membres assignés" Style="{StaticResource SectionTitle}" Margin="2,4,0,0" />
+                <Label x:Name="MembersHeader" Text="Membres du comité" Style="{StaticResource SectionTitle}" Margin="2,4,0,0" />
 
                 <!-- Container populated dynamically -->
                 <VerticalStackLayout x:Name="ResponsiblesContainer" Spacing="10" />
+
+                <Label x:Name="SentHeader" Text="Invitations envoyées" Style="{StaticResource SectionTitle}" Margin="2,10,0,0" IsVisible="False" AutomationId="SentHeader" />
+                <VerticalStackLayout x:Name="SentContainer" Spacing="10" AutomationId="SentContainer" />
             </VerticalStackLayout>
         </ScrollView>
 
         <!-- Bottom Action Button -->
-        <Border Grid.Row="2" BackgroundColor="{StaticResource Surface}" Stroke="{StaticResource Border}" StrokeThickness="1,0,0,0" Padding="14,10,14,16">
-            <Button Text="+ Ajouter un responsable" Style="{StaticResource PrimaryButton}" Clicked="OnAddResponsibleClicked" />
+        <Border Grid.Row="2" BackgroundColor="{StaticResource Surface}" Stroke="{StaticResource Border}" StrokeThickness="1" Padding="14,10,14,16">
+            <Button Text="+ Inviter un responsable" Style="{StaticResource PrimaryButton}" Clicked="OnAddResponsibleClicked" AutomationId="AddButton" />
         </Border>
     </Grid>
 </ContentPage>

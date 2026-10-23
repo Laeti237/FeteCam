@@ -8,7 +8,7 @@ public partial class DetailInvitePage : ContentPage
     private string _places;
     private string _table;
 
-    public DetailInvitePage(string name = "Marie Ngono", string phone = "+237 671 22 33 44", string status = "Confirmé", string places = "2 personnes", string table = "Table d'honneur")
+    public DetailInvitePage(string name = "Marie Ngono", string phone = "+237 671 22 33 44", string status = "Confirmé", string places = "2 personnes", string table = "Table d'honneur", string eventName = "Mariage Alain & Rose")
     {
         InitializeComponent();
 
@@ -18,6 +18,9 @@ public partial class DetailInvitePage : ContentPage
         _places = places;
         _table = table;
 
+        if (!string.IsNullOrWhiteSpace(eventName))
+            SubtitleLabel.Text = eventName;
+
         HeaderNameLabel.Text = _guestName;
         GuestNameLabel.Text = _guestName;
         GuestPhoneLabel.Text = _guestPhone;
@@ -26,15 +29,6 @@ public partial class DetailInvitePage : ContentPage
         TableLabel.Text = _table;
 
         InitialsLabel.Text = string.IsNullOrWhiteSpace(_guestName) ? "?" : (_guestName.Length <= 2 ? _guestName.ToUpper() : _guestName.Substring(0, 2).ToUpper());
-
-        if (_status == "En attente")
-        {
-            StatusLabel.TextColor = (Color)Application.Current!.Resources["Warning"];
-        }
-        else if (_status == "Absent")
-        {
-            StatusLabel.TextColor = (Color)Application.Current!.Resources["Error"];
-        }
     }
 
     private async void OnBackTapped(object? sender, EventArgs e)

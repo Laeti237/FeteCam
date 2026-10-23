@@ -27,24 +27,31 @@
             <VerticalStackLayout Spacing="12">
                 <!-- User Card -->
                 <Border Style="{StaticResource CardFrame}">
-                    <Grid ColumnDefinitions="Auto,*">
+                    <Border.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="OnAccountTapped" />
+                    </Border.GestureRecognizers>
+                    <Grid ColumnDefinitions="Auto,*,Auto">
                         <Border WidthRequest="50" HeightRequest="50" StrokeShape="RoundRectangle 25" BackgroundColor="{StaticResource Primary}" Stroke="Transparent" VerticalOptions="Center">
-                            <Label Text="LN" FontSize="18" FontAttributes="Bold" TextColor="White" HorizontalOptions="Center" VerticalOptions="Center" />
+                            <Label x:Name="InitialsLabel" Text="LN" FontSize="18" FontAttributes="Bold" TextColor="White" HorizontalOptions="Center" VerticalOptions="Center" />
                         </Border>
                         <VerticalStackLayout Grid.Column="1" Spacing="2" Margin="14,0,0,0" VerticalOptions="Center">
-                            <Label Text="Laeticia Ngono" FontSize="16" FontAttributes="Bold" TextColor="{StaticResource TextPrimary}" />
-                            <Label Text="+237 671 22 33 44 · Douala" Style="{StaticResource CaptionText}" />
+                            <Label x:Name="NameLabel" Text="Laeticia Ngono" FontSize="16" FontAttributes="Bold" TextColor="{StaticResource TextPrimary}" />
+                            <Label x:Name="MetaLabel" Text="+237 671 22 33 44 · Douala" Style="{StaticResource CaptionText}" />
                         </VerticalStackLayout>
+                        <Label Grid.Column="2" Text="›" FontSize="20" FontAttributes="Bold" TextColor="{StaticResource TextSecondary}" VerticalOptions="Center" />
                     </Grid>
                 </Border>
 
                 <!-- Navigation List -->
                 <!-- Item 1: Mes événements -->
                 <Border Style="{StaticResource CardFrame}">
+                    <Border.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="OnMyEventsTapped" />
+                    </Border.GestureRecognizers>
                     <Grid ColumnDefinitions="*,Auto">
                         <VerticalStackLayout Spacing="2">
                             <Label Text="Mes événements" Style="{StaticResource SectionTitle}" />
-                            <Label Text="3 en cours" Style="{StaticResource CaptionText}" />
+                            <Label x:Name="EventsCaptionLabel" Text="3 en cours" Style="{StaticResource CaptionText}" />
                         </VerticalStackLayout>
                         <Label Grid.Column="1" Text="›" FontSize="20" FontAttributes="Bold" TextColor="{StaticResource TextSecondary}" VerticalOptions="Center" />
                     </Grid>
@@ -52,6 +59,9 @@
 
                 <!-- Item 2: Notifications -->
                 <Border Style="{StaticResource CardFrame}">
+                    <Border.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="OnNotificationsTapped" />
+                    </Border.GestureRecognizers>
                     <Grid ColumnDefinitions="*,Auto">
                         <VerticalStackLayout Spacing="2">
                             <Label Text="Notifications" Style="{StaticResource SectionTitle}" />
@@ -63,6 +73,9 @@
 
                 <!-- Item 3: Paramètres -->
                 <Border Style="{StaticResource CardFrame}">
+                    <Border.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="OnSettingsTapped" />
+                    </Border.GestureRecognizers>
                     <Grid ColumnDefinitions="*,Auto">
                         <VerticalStackLayout Spacing="2">
                             <Label Text="Paramètres" Style="{StaticResource SectionTitle}" />
@@ -74,6 +87,9 @@
 
                 <!-- Item 4: Aide & Support -->
                 <Border Style="{StaticResource CardFrame}">
+                    <Border.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="OnHelpTapped" />
+                    </Border.GestureRecognizers>
                     <Grid ColumnDefinitions="*,Auto">
                         <VerticalStackLayout Spacing="2">
                             <Label Text="Aide" Style="{StaticResource SectionTitle}" />

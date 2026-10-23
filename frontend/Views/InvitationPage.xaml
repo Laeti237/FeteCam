@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="FeteCam.Views.InvitationPage"
+             Title="Invitation"
+             BackgroundColor="{StaticResource Background}">
+
+    <Grid RowDefinitions="Auto,*">
+        <!-- Top App Bar -->
+        <Border Grid.Row="0" Style="{StaticResource HeaderBar}">
+            <VerticalStackLayout Spacing="8">
+                <HorizontalStackLayout Spacing="4">
+                    <HorizontalStackLayout.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="OnBackTapped" />
+                    </HorizontalStackLayout.GestureRecognizers>
+                    <Label Text="‹ Retour" FontSize="14" FontAttributes="Bold" TextColor="{StaticResource Accent}" />
+                </HorizontalStackLayout>
+                <VerticalStackLayout Spacing="2">
+                    <Label Text="Invitation au comité" FontSize="18" FontAttributes="Bold" TextColor="White" />
+                    <Label x:Name="SubtitleLabel" Text="Vérification du lien…" FontSize="12" TextColor="#DCE8E2" />
+                </VerticalStackLayout>
+            </VerticalStackLayout>
+        </Border>
+
+        <!-- Content -->
+        <ScrollView Grid.Row="1" Padding="14,14">
+            <VerticalStackLayout Spacing="12">
+
+                <!-- Paste link (when no token) -->
+                <Border x:Name="PasteCard" Style="{StaticResource CardFrame}" Padding="14,14" IsVisible="False">
+                    <VerticalStackLayout Spacing="10">
+                        <Label Text="Coller le lien reçu" Style="{StaticResource SectionTitle}" />
+                        <Entry x:Name="LinkEntry" Style="{StaticResource StyledEntry}" Placeholder="fetecam://invite/…" AutomationId="LinkEntry" />
+                        <Label x:Name="PasteErrorLabel" Text="" FontSize="13" TextColor="{StaticResource Error}" IsVisible="False" />
+                        <Button Text="Ouvrir l'invitation" Style="{StaticResource PrimaryButton}" Clicked="OnOpenLinkClicked" AutomationId="OpenLinkButton" />
+                    </VerticalStackLayout>
+                </Border>
+
+                <!-- Loading -->
+                <Label x:Name="LoadingLabel" Text="Chargement de l'invitation…" FontSize="14" TextColor="{StaticResource TextSecondary}" HorizontalOptions="Center" IsVisible="False" />
+
+                <!-- Invitation details -->
+                <Border x:Name="DetailCard" Style="{StaticResource CardFrame}" Padding="16,16" IsVisible="False" AutomationId="DetailCard">
+                    <VerticalStackLayout Spacing="12">
+                        <VerticalStackLayout Spacing="4">
+                            <Label x:Name="EventNameLabel" Text="" FontSize="20" FontAttributes="Bold" TextColor="{StaticResource TextPrimary}" AutomationId="EventNameLabel" />
+                            <Label x:Name="InviterLabel" Text="" Style="{StaticResource CaptionText}" />
+                        </VerticalStackLayout>
+
+                        <Grid RowDefinitions="Auto,Auto,Auto" RowSpacing="0">
+                            <Grid ColumnDefinitions="*,Auto" ColumnSpacing="8">
+                                <Label Text="Rôle proposé" FontSize="14" TextColor="{StaticResource TextSecondary}" VerticalOptions="Center" />
+                                <Label x:Name="RoleLabel" Grid.Column="1" Text="" FontSize="14" FontAttributes="Bold" TextColor="{StaticResource TextPrimary}" VerticalOptions="Center" AutomationId="RoleLabel" />
+                            </Grid>
+                            <Grid Grid.Row="1" ColumnDefinitions="*,Auto" ColumnSpacing="8" x:Name="TaskRow">
+                                <Label Text="Responsabilité" FontSize="14" TextColor="{StaticResource TextSecondary}" VerticalOptions="Center" />
+                                <Label x:Name="TaskLabel" Grid.Column="1" Text="" FontSize="14" FontAttributes="Bold" TextColor="{StaticResource TextPrimary}" VerticalOptions="Center" AutomationId="TaskLabel" />
+                            </Grid>
+                            <Grid Grid.Row="2" ColumnDefinitions="*,Auto" ColumnSpacing="8" Margin="0,6,0,0">
+                                <Label Text="Statut" FontSize="14" TextColor="{StaticResource TextSecondary}" VerticalOptions="Center" />
+                                <Border Grid.Column="1" x:Name="StatusBadge" BackgroundColor="{StaticResource SuccessLight}" Stroke="Transparent" StrokeThickness="0" Padding="10,5" StrokeShape="RoundRectangle 6" HeightRequest="32" WidthRequest="84" VerticalOptions="Center">
+                                    <Label x:Name="StatusLabel" Text="En attente" FontSize="12" FontAttributes="Bold" TextColor="{StaticResource Success}" HorizontalOptions="Center" VerticalOptions="Center" AutomationId="StatusLabel" />
+                                </Border>
+                            </Grid>
+                        </Grid>
+
+                        <VerticalStackLayout x:Name="AuthHint" Spacing="8" IsVisible="False">
+                            <Label Text="Connectez-vous pour accepter ou refuser cette invitation." FontSize="13" TextColor="{StaticResource TextSecondary}" AutomationId="AuthHintLabel" />
+                            <Button x:Name="LoginButton" Text="Se connecter" Style="{StaticResource PrimaryButton}" Clicked="OnLoginClicked" AutomationId="LoginButton" />
+                        </VerticalStackLayout>
+
+                        <VerticalStackLayout x:Name="RespondButtons" Spacing="8" IsVisible="False">
+                            <Button x:Name="AcceptButton" Text="Accepter l'invitation" Style="{StaticResource PrimaryButton}" Clicked="OnAcceptClicked" AutomationId="AcceptButton" />
+                            <Button x:Name="DeclineButton" Text="Refuser l'invitation" TextColor="{StaticResource Error}" BackgroundColor="{StaticResource Surface}" BorderColor="{StaticResource Error}" BorderWidth="1" CornerRadius="10" HeightRequest="48" FontAttributes="Bold" Clicked="OnDeclineClicked" AutomationId="DeclineButton" />
+                        </VerticalStackLayout>
+
+                        <Label x:Name="ResultLabel" Text="" FontSize="14" FontAttributes="Bold" TextColor="{StaticResource Success}" IsVisible="False" AutomationId="ResultLabel" />
+                    </VerticalStackLayout>
+                </Border>
+
+                <!-- Error / not found -->
+                <Border x:Name="ErrorCard" Style="{StaticResource CardFrame}" Padding="16,16" IsVisible="False">
+                    <VerticalStackLayout Spacing="8">
+                        <Label Text="Invitation introuvable" Style="{StaticResource SectionTitle}" />
+                        <Label x:Name="ErrorLabel" Text="" FontSize="13" TextColor="{StaticResource TextSecondary}" />
+                    </VerticalStackLayout>
+                </Border>
+
+            </VerticalStackLayout>
+        </ScrollView>
+    </Grid>
+</ContentPage>
